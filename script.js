@@ -1,17 +1,19 @@
 "use strict";
 
-/* =========================
-   PHARMACHECK AI
-   FINAL WORKING ENGINE
-========================= */
+
+/* ==========================================
+   DRUG LIBRARY
+========================================== */
 
 const DRUGS = {
+
   aspirin: "Aspirin",
   paracetamol: "Paracetamol",
   ibuprofen: "Ibuprofen",
   diclofenac: "Diclofenac",
   naproxen: "Naproxen",
   ketorolac: "Ketorolac",
+
   amoxicillin: "Amoxicillin",
   azithromycin: "Azithromycin",
   clarithromycin: "Clarithromycin",
@@ -21,8 +23,10 @@ const DRUGS = {
   metronidazole: "Metronidazole",
   rifampicin: "Rifampicin",
   linezolid: "Linezolid",
+
   warfarin: "Warfarin",
   heparin: "Heparin",
+
   atenolol: "Atenolol",
   metoprolol: "Metoprolol",
   propranolol: "Propranolol",
@@ -35,41 +39,50 @@ const DRUGS = {
   spironolactone: "Spironolactone",
   digoxin: "Digoxin",
   amiodarone: "Amiodarone",
+
   atorvastatin: "Atorvastatin",
   simvastatin: "Simvastatin",
   rosuvastatin: "Rosuvastatin",
+
   metformin: "Metformin",
   glimepiride: "Glimepiride",
   glipizide: "Glipizide",
   insulin: "Insulin",
+
   fluoxetine: "Fluoxetine",
   sertraline: "Sertraline",
   diazepam: "Diazepam",
   phenytoin: "Phenytoin",
   carbamazepine: "Carbamazepine",
   lithium: "Lithium",
+
   omeprazole: "Omeprazole",
   pantoprazole: "Pantoprazole",
   antacid: "Antacid",
   ondansetron: "Ondansetron",
   metoclopramide: "Metoclopramide",
+
   salbutamol: "Salbutamol",
   theophylline: "Theophylline",
   montelukast: "Montelukast",
+
   levothyroxine: "Levothyroxine",
   prednisolone: "Prednisolone",
   dexamethasone: "Dexamethasone",
+
   fluconazole: "Fluconazole",
   ketoconazole: "Ketoconazole",
+
   alcohol: "Alcohol",
   sildenafil: "Sildenafil",
   methotrexate: "Methotrexate"
+
 };
 
 
-/* =========================
+/* ==========================================
    INTERACTION DATABASE
-========================= */
+========================================== */
 
 const INTERACTIONS = {
 
@@ -78,18 +91,18 @@ const INTERACTIONS = {
     score: 88,
     type: "Bleeding Risk",
     pathway: "Pharmacodynamic",
-    risk: "Concurrent use may increase the risk of gastrointestinal and systemic bleeding.",
-    moa: "Both agents can impair hemostasis through different mechanisms.",
+    risk: "Concurrent use may increase bleeding risk.",
+    moa: "Both agents affect hemostasis through different mechanisms.",
     recommendation: "Clinical monitoring and verification with an authoritative interaction reference are recommended."
   },
 
   "alcohol|paracetamol": {
     severity: "HIGH",
     score: 85,
-    type: "Hepatotoxicity Risk",
+    type: "Hepatic Safety",
     pathway: "Pharmacodynamic",
     risk: "Concurrent exposure may increase hepatic safety concerns.",
-    moa: "Alcohol exposure can alter hepatic metabolism and increase susceptibility to acetaminophen-related toxicity.",
+    moa: "Alcohol exposure can affect hepatic metabolism and susceptibility to acetaminophen toxicity.",
     recommendation: "Avoid unsupervised concurrent use and verify patient-specific factors."
   },
 
@@ -177,7 +190,7 @@ const INTERACTIONS = {
     severity: "HIGH",
     score: 82,
     type: "Lithium Toxicity",
-    pathway: "Renal clearance",
+    pathway: "Renal Clearance",
     risk: "NSAIDs may increase lithium exposure.",
     moa: "Reduced renal lithium clearance may increase serum concentration.",
     recommendation: "Verify lithium monitoring requirements."
@@ -237,7 +250,7 @@ const INTERACTIONS = {
     severity: "HIGH",
     score: 89,
     type: "Toxicity",
-    pathway: "Renal clearance",
+    pathway: "Renal Clearance",
     risk: "NSAIDs may alter methotrexate clearance and increase toxicity concerns.",
     moa: "Renal elimination and protein-binding effects may contribute.",
     recommendation: "Professional verification is recommended."
@@ -292,296 +305,477 @@ const INTERACTIONS = {
     moa: "Beta-adrenergic effects can mask some warning symptoms.",
     recommendation: "Monitor according to clinical guidance."
   }
+
 };
 
 
-/* =========================
-   HELPERS
-========================= */
+/* ==========================================
+   CREATE DRUG OPTIONS
+========================================== */
 
-function normalizePair(a, b) {
-  return [a, b].sort().join("|");
-}
+function loadDrugs() {
 
-function get(id) {
-  return document.getElementById(id);
-}
+  const first = document.getElementById("drug1");
+  const second = document.getElementById("drug2");
 
-function setText(id, value) {
-  const el = get(id);
-  if (el) el.textContent = value;
-}
+  if (!first || !second) {
+    console.error("Drug selectors not found.");
+    return;
+  }
 
-function show(id) {
-  const el = get(id);
-  if (el) el.style.display = "";
-}
+  const sorted = Object.entries(DRUGS)
+    .sort((a, b) => a[1].localeCompare(b[1]));
 
-function hide(id) {
-  const el = get(id);
-  if (el) el.style.display = "none";
-}
+  sorted.forEach(function(item) {
 
+    const value = item[0];
+    const name = item[1];
 
-/* =========================
-   DRUG SELECTS
-========================= */
+    const option1 = document.createElement("option");
+    option1.value = value;
+    option1.textContent = name;
 
-function populateDrugSelects() {
+    const option2 = document.createElement("option");
+    option2.value = value;
+    option2.textContent = name;
 
-  const select1 = get("drug1");
-  const select2 = get("drug2");
+    first.appendChild(option1);
+    second.appendChild(option2);
 
-  if (!select1 || !select2) return;
+  });
 
-  const options = Object.entries(DRUGS)
-    .sort((a, b) => a[1].localeCompare(b[1]))
-    .map(([value, name]) =>
-      `<option value="${value}">${name}</option>`
-    )
-    .join("");
-
-  select1.innerHTML = `<option value="">Select primary drug</option>${options}`;
-  select2.innerHTML = `<option value="">Select secondary drug</option>${options}`;
 }
 
 
-/* =========================
-   SEARCH FILTER
-========================= */
+/* ==========================================
+   SEARCH
+========================================== */
 
 function setupSearch(searchId, selectId) {
 
-  const search = get(searchId);
-  const select = get(selectId);
+  const search = document.getElementById(searchId);
+  const select = document.getElementById(selectId);
 
   if (!search || !select) return;
 
-  search.addEventListener("input", function () {
+  search.addEventListener("input", function() {
 
-    const query = this.value.toLowerCase().trim();
+    const query = this.value
+      .toLowerCase()
+      .trim();
 
-    const current = select.value;
+    const currentValue = select.value;
 
-    select.innerHTML =
-      `<option value="">${selectId === "drug1" ? "Select primary drug" : "Select secondary drug"}</option>`;
+    select.innerHTML = "";
+
+    const placeholder = document.createElement("option");
+
+    placeholder.value = "";
+    placeholder.textContent =
+      selectId === "drug1"
+        ? "Select primary drug"
+        : "Select secondary drug";
+
+    select.appendChild(placeholder);
+
 
     Object.entries(DRUGS)
-      .filter(([key, name]) =>
-        !query ||
-        key.includes(query) ||
-        name.toLowerCase().includes(query)
+      .filter(function(item) {
+
+        const key = item[0];
+        const name = item[1].toLowerCase();
+
+        return (
+          !query ||
+          key.includes(query) ||
+          name.includes(query)
+        );
+
+      })
+      .sort((a, b) =>
+        a[1].localeCompare(b[1])
       )
-      .sort((a, b) => a[1].localeCompare(b[1]))
-      .forEach(([key, name]) => {
+      .forEach(function(item) {
 
         const option = document.createElement("option");
-        option.value = key;
-        option.textContent = name;
+
+        option.value = item[0];
+        option.textContent = item[1];
 
         select.appendChild(option);
+
       });
 
-    if (DRUGS[current]) {
-      select.value = current;
+
+    if (DRUGS[currentValue]) {
+      select.value = currentValue;
     }
+
   });
+
 }
 
 
-/* =========================
-   RUN ANALYSIS
-========================= */
+/* ==========================================
+   ANALYSIS
+========================================== */
 
 function runAnalysis() {
 
-  const drug1 = get("drug1")?.value;
-  const drug2 = get("drug2")?.value;
+  console.log("RUN ANALYSIS CLICKED");
+
+
+  const drug1 = document.getElementById("drug1").value;
+  const drug2 = document.getElementById("drug2").value;
+
 
   if (!drug1 || !drug2) {
-    alert("Please select both primary and secondary drugs.");
+
+    alert(
+      "Please select both primary and secondary drugs."
+    );
+
     return;
   }
+
 
   if (drug1 === drug2) {
-    alert("Please select two different drugs.");
+
+    alert(
+      "Please select two different drugs."
+    );
+
     return;
   }
 
-  const key = normalizePair(drug1, drug2);
 
-  const interaction = INTERACTIONS[key];
+  const key = [drug1, drug2]
+    .sort()
+    .join("|");
 
-  let result;
 
-  if (interaction) {
+  let result = INTERACTIONS[key];
 
-    result = {
-      ...interaction,
-      title: `${DRUGS[drug1]} + ${DRUGS[drug2]}`
-    };
 
-  } else {
+  if (!result) {
 
     result = {
+
       severity: "VERIFY",
+
       score: null,
+
       type: "No Local Interaction Rule",
+
       pathway: "Insufficient local data",
-      risk: "This combination is not covered by the current local interaction rule set.",
-      moa: "Absence of a local rule does not establish that the combination is safe.",
-      recommendation: "Verify using an authoritative drug-interaction reference or qualified healthcare professional.",
-      title: `${DRUGS[drug1]} + ${DRUGS[drug2]}`
+
+      risk:
+        "This combination is not covered by the current local interaction rule set.",
+
+      moa:
+        "No local rule was found. This does not establish that the combination is safe.",
+
+      recommendation:
+        "Verify this combination using an authoritative drug-interaction reference or qualified healthcare professional."
+
     };
+
   }
 
-  renderReport(result);
-}
 
-
-/* =========================
-   REPORT
-========================= */
-
-function renderReport(result) {
-
-  const placeholder = get("placeholderView");
-  const report = get("reportView");
-
-  if (placeholder) placeholder.style.display = "none";
-  if (report) report.style.display = "block";
-
-  setText("pairTitle", result.title);
-  setText("severityPill", result.severity);
-  setText("riskScore", result.score !== null ? `${result.score}/100` : "—");
-  setText("interactionType", result.type);
-  setText("pathway", result.pathway);
-  setText("riskText", result.risk);
-  setText("moaText", result.moa);
-  setText("recommendationText", result.recommendation);
-
-  const meter = get("riskMeter");
-
-  if (meter) {
-    meter.style.width =
-      result.score !== null
-        ? `${result.score}%`
-        : "0%";
-  }
-
-  setText(
-    "reportCode",
-    `PC-${Date.now().toString().slice(-8)}`
+  showReport(
+    drug1,
+    drug2,
+    result
   );
 
-  const pill = get("severityPill");
-
-  if (pill) {
-    pill.className = "severity-pill";
-
-    if (result.severity === "HIGH") {
-      pill.classList.add("high");
-    } else if (result.severity === "MODERATE") {
-      pill.classList.add("moderate");
-    } else {
-      pill.classList.add("verify");
-    }
-  }
-
-  if (report) {
-    report.scrollIntoView({
-      behavior: "smooth",
-      block: "start"
-    });
-  }
 }
 
 
-/* =========================
+/* ==========================================
+   SHOW REPORT
+========================================== */
+
+function showReport(drug1, drug2, result) {
+
+  const placeholder =
+    document.getElementById("placeholderView");
+
+  const report =
+    document.getElementById("reportView");
+
+
+  placeholder.style.display = "none";
+
+  report.style.display = "block";
+
+
+  document.getElementById("pairTitle").textContent =
+    DRUGS[drug1] + " + " + DRUGS[drug2];
+
+
+  const pill =
+    document.getElementById("severityPill");
+
+
+  pill.textContent =
+    result.severity;
+
+
+  pill.className =
+    "severity " +
+    result.severity.toLowerCase();
+
+
+  document.getElementById("riskScore").textContent =
+    result.score === null
+      ? "—"
+      : result.score + "/100";
+
+
+  document.getElementById("interactionType").textContent =
+    result.type;
+
+
+  document.getElementById("pathway").textContent =
+    result.pathway;
+
+
+  document.getElementById("riskText").textContent =
+    result.risk;
+
+
+  document.getElementById("moaText").textContent =
+    result.moa;
+
+
+  document.getElementById("recommendationText").textContent =
+    result.recommendation;
+
+
+  const meter =
+    document.getElementById("riskMeter");
+
+
+  meter.style.width =
+    result.score === null
+      ? "0%"
+      : result.score + "%";
+
+
+  document.getElementById("reportCode").textContent =
+    "PC-" +
+    Math.floor(
+      10000000 +
+      Math.random() * 90000000
+    );
+
+
+  report.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+
+}
+
+
+/* ==========================================
    RESET
-========================= */
+========================================== */
 
 function resetAnalysis() {
 
-  if (get("drug1")) get("drug1").value = "";
-  if (get("drug2")) get("drug2").value = "";
+  document.getElementById("drug1").value = "";
 
-  if (get("patientAge")) get("patientAge").value = "adult";
-  if (get("patientRenal")) get("patientRenal").value = "normal";
-  if (get("patientHepatic")) get("patientHepatic").value = "normal";
+  document.getElementById("drug2").value = "";
 
-  hide("reportView");
-  show("placeholderView");
+  document.getElementById("patientAge").value =
+    "adult";
+
+  document.getElementById("patientRenal").value =
+    "normal";
+
+  document.getElementById("patientHepatic").value =
+    "normal";
+
+
+  document.getElementById("placeholderView").style.display =
+    "flex";
+
+  document.getElementById("reportView").style.display =
+    "none";
+
+  document.getElementById("riskMeter").style.width =
+    "0%";
+
 }
 
 
-/* =========================
-   PRESETS
-========================= */
+/* ==========================================
+   QUICK SCENARIOS
+========================================== */
 
-function applyPreset(value) {
+function setupScenarios() {
 
-  const parts = value.split("|");
+  document.querySelectorAll("[data-preset]")
+    .forEach(function(button) {
 
-  if (parts.length !== 2) return;
+      button.addEventListener("click", function() {
 
-  const first = parts[0];
-  const second = parts[1];
-
-  if (get("drug1")) get("drug1").value = first;
-  if (get("drug2")) get("drug2").value = second;
-
-  runAnalysis();
-}
+        const values =
+          this.dataset.preset.split("|");
 
 
-/* =========================
-   BUTTONS
-========================= */
+        document.getElementById("drug1").value =
+          values[0];
 
-function setupButtons() {
+        document.getElementById("drug2").value =
+          values[1];
 
-  const run = get("runAnalysis");
 
-  if (run) {
-    run.addEventListener("click", function (event) {
-      event.preventDefault();
-      runAnalysis();
+        runAnalysis();
+
+      });
+
     });
+
+}
+
+
+/* ==========================================
+   MATRIX
+========================================== */
+
+function renderMatrix(filter) {
+
+  const grid =
+    document.getElementById("matrixGrid");
+
+
+  grid.innerHTML = "";
+
+
+  Object.entries(INTERACTIONS)
+    .filter(function(item) {
+
+      const data = item[1];
+
+      return (
+        filter === "ALL" ||
+        data.severity === filter
+      );
+
+    })
+    .forEach(function(item) {
+
+      const key = item[0];
+      const data = item[1];
+
+      const drugs = key.split("|");
+
+      const card =
+        document.createElement("div");
+
+      card.className =
+        "matrix-card";
+
+
+      card.innerHTML = `
+
+        <div class="matrix-top">
+
+          <h4>
+            ${DRUGS[drugs[0]]}
+            +
+            ${DRUGS[drugs[1]]}
+          </h4>
+
+          <span class="score-value">
+            ${data.score}/100
+          </span>
+
+        </div>
+
+        <p>
+          ${data.type} · ${data.pathway}
+        </p>
+
+        <span class="matrix-severity ${data.severity.toLowerCase()}">
+          ${data.severity}
+        </span>
+
+      `;
+
+
+      grid.appendChild(card);
+
+    });
+
+}
+
+
+/* ==========================================
+   FILTERS
+========================================== */
+
+function setupFilters() {
+
+  document.querySelectorAll(".filter")
+    .forEach(function(button) {
+
+      button.addEventListener("click", function() {
+
+        document.querySelectorAll(".filter")
+          .forEach(function(btn) {
+
+            btn.classList.remove("active");
+
+          });
+
+
+        this.classList.add("active");
+
+
+        renderMatrix(
+          this.dataset.filter
+        );
+
+      });
+
+    });
+
+}
+
+
+/* ==========================================
+   START
+========================================== */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  function() {
+
+    loadDrugs();
+
+    setupSearch(
+      "search1",
+      "drug1"
+    );
+
+    setupSearch(
+      "search2",
+      "drug2"
+    );
+
+    setupScenarios();
+
+    setupFilters();
+
+    renderMatrix("ALL");
+
+    console.log(
+      "PharmaCheck AI ENGINE ONLINE"
+    );
+
   }
-
-  const clear = get("clearBtn");
-
-  if (clear) {
-    clear.addEventListener("click", function (event) {
-      event.preventDefault();
-      resetAnalysis();
-    });
-  }
-
-  document.querySelectorAll("[data-preset]").forEach(button => {
-
-    button.addEventListener("click", function () {
-      applyPreset(this.dataset.preset);
-    });
-
-  });
-}
-
-
-/* =========================
-   INIT
-========================= */
-
-document.addEventListener("DOMContentLoaded", function () {
-
-  populateDrugSelects();
-
-  setupSearch("search1", "drug1");
-  setupSearch("search2", "drug2");
-
-  setupButtons();
-
-  console.log("PharmaCheck AI Engine: ONLINE");
-
-});
+);
