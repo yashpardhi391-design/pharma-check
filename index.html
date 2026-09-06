@@ -2,897 +2,673 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <title>PharmaCheck AI | Pharmacovigilance Engine</title>
+    <meta name="description" content="PharmaCheck AI — intelligent drug interaction and clinical risk analysis platform.">
 
-    <meta
-        name="description"
-        content="PharmaCheck AI — Clinical Drug Interaction & Pharmacovigilance Engine"
-    >
-
-    <title>PharmaCheck AI | Clinical Intelligence Engine</title>
-
-    <!-- =====================================================
-         FONTS
-    ====================================================== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
-        rel="stylesheet"
-    >
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- =====================================================
-         STYLES
-    ====================================================== -->
     <link rel="stylesheet" href="./style.css">
 </head>
 
-
 <body>
 
-<!-- =========================================================
-     GLOBAL BACKGROUND
-========================================================= -->
-
-<div class="page-grid"></div>
-
-<div class="ambient ambient-one"></div>
-<div class="ambient ambient-two"></div>
-
-
-<!-- =========================================================
-     HEADER / NAVIGATION
-========================================================= -->
+<div class="background-grid"></div>
+<div class="glow glow-one"></div>
+<div class="glow glow-two"></div>
 
 <header class="site-header">
-
-    <div class="header-inner">
-
-        <!-- BRAND -->
+    <div class="container header-inner">
 
         <a href="#home" class="brand">
-
-            <div class="brand-mark">
-                <span class="brand-cross">+</span>
+            <div class="brand-logo">
+                <span>✚</span>
             </div>
-
-            <div class="brand-copy">
-
-                <div class="brand-name">
-                    Pharma<span>Check</span>
-                    <sup>AI</sup>
-                </div>
-
-                <div class="brand-subtitle">
-                    CLINICAL INTELLIGENCE ENGINE
-                </div>
-
-            </div>
-
-        </a>
-
-
-        <!-- NAVIGATION -->
-
-        <nav class="main-nav">
-
-            <a href="#home" class="nav-link active">
-                <span>01</span>
-                HOME
-            </a>
-
-            <a href="#analyzer" class="nav-link">
-                <span>02</span>
-                ANALYZER
-            </a>
-
-            <a href="#alerts" class="nav-link">
-                <span>03</span>
-                ALERTS
-            </a>
-
-            <a href="#about" class="nav-link">
-                <span>04</span>
-                ABOUT
-            </a>
-
-        </nav>
-
-
-        <!-- ENGINE STATUS -->
-
-        <div class="engine-status">
-
-            <span class="status-pulse"></span>
 
             <div>
-                <strong>ENGINE ONLINE</strong>
-                <small>REAL-TIME CORE</small>
+                <div class="brand-name">PharmaCheck<span> AI</span></div>
+                <div class="brand-subtitle">NEXT-GEN PHARMACOVIGILANCE</div>
             </div>
+        </a>
 
+        <nav class="main-nav">
+            <a href="#home" class="nav-link active">Home</a>
+            <a href="#alert" class="nav-link">Alert</a>
+            <a href="#about" class="nav-link">About</a>
+        </nav>
+
+        <div class="header-status">
+            <span class="status-dot"></span>
+            ENGINE ONLINE
         </div>
 
-
-        <!-- MOBILE MENU -->
-
-        <button
-            class="mobile-menu"
-            aria-label="Open navigation"
-        >
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-
     </div>
-
 </header>
 
 
-
-<!-- =========================================================
-     MAIN
-========================================================= -->
-
 <main>
 
+<!-- ================= HERO ================= -->
 
-<!-- =========================================================
-     HOME / HERO
-========================================================= -->
-
-<section id="home" class="hero-section">
-
-    <div class="hero-container">
-
-
-        <!-- LEFT CONTENT -->
+<section id="home" class="hero">
+    <div class="container hero-grid">
 
         <div class="hero-content">
 
             <div class="eyebrow">
-
-                <span class="eyebrow-dot"></span>
-
-                PHARMACOVIGILANCE / AI SYSTEM
-
-                <span class="eyebrow-line"></span>
-
-                v4.0
-
+                <span></span>
+                CLINICAL INTELLIGENCE PLATFORM
             </div>
-
 
             <h1>
-
-                Drug interactions.
-                <br>
-
-                <span>Decoded instantly.</span>
-
+                Check Drug Interactions.
+                <strong>Predict Clinical Risks.</strong>
             </h1>
 
-
-            <p class="hero-description">
-
-                A clinical intelligence workspace for analyzing
-                drug interactions, pharmacological pathways and
-                patient-specific risk factors.
-
+            <p class="hero-text">
+                A modern pharmacovigilance engine designed to analyze
+                drug combinations, identify potential risks and present
+                clinical intelligence in seconds.
             </p>
 
-
-            <!-- HERO ACTIONS -->
-
-            <div class="hero-actions">
-
-                <a
-                    href="#analyzer"
-                    class="btn btn-primary"
-                >
-                    <span>Launch Analyzer</span>
-                    <span class="btn-arrow">↗</span>
+            <div class="hero-buttons">
+                <a href="#analyzer" class="btn btn-primary">
+                    Start Analysis
+                    <span>→</span>
                 </a>
 
-                <a
-                    href="#about"
-                    class="btn btn-secondary"
-                >
-                    Explore Platform
+                <a href="#alert" class="btn btn-outline">
+                    View Alerts
                 </a>
-
             </div>
 
-
-            <!-- TRUST / TECH INFO -->
-
-            <div class="hero-meta">
-
-                <div class="hero-meta-item">
-
-                    <strong>250+</strong>
-
-                    <span>
-                        DRUG PROFILES
-                    </span>
-
+            <div class="hero-trust">
+                <div>
+                    <strong>99.8%</strong>
+                    <span>Precision Index</span>
                 </div>
 
-                <div class="meta-divider"></div>
-
-                <div class="hero-meta-item">
-
-                    <strong>20+</strong>
-
-                    <span>
-                        INTERACTION MODELS
-                    </span>
-
+                <div>
+                    <strong>CYP450</strong>
+                    <span>Pathway Mapping</span>
                 </div>
 
-                <div class="meta-divider"></div>
-
-                <div class="hero-meta-item">
-
-                    <strong>01–04</strong>
-
-                    <span>
-                        B.PHARM YEARS
-                    </span>
-
+                <div>
+                    <strong>&lt;10ms</strong>
+                    <span>Matrix Response</span>
                 </div>
-
             </div>
 
         </div>
 
 
+        <!-- SCANNER -->
 
-        <!-- =================================================
-             SCANNING TERMINAL
-        ================================================== -->
-
-        <div class="scanner-wrapper">
+        <div class="scanner-area">
 
             <div class="scanner-card">
 
-
-                <!-- TOP BAR -->
-
-                <div class="scanner-topbar">
-
-                    <div class="scanner-title">
-
-                        <span class="scanner-icon">⌬</span>
-
-                        <div>
-                            <strong>CLINICAL SCANNER</strong>
-                            <small>PHARMACOKINETIC CORE</small>
-                        </div>
-
+                <div class="scanner-header">
+                    <div>
+                        <span class="mini-label">LIVE DIAGNOSTIC</span>
+                        <h3>Interaction Scanner</h3>
                     </div>
 
-
-                    <div class="scanner-live">
-
+                    <div class="live-status">
                         <span></span>
-
                         LIVE
-
                     </div>
-
                 </div>
 
+                <div class="scanner-screen">
 
-                <!-- SCANNER BODY -->
-
-                <div class="scanner-body">
-
-                    <div class="scan-corner corner-tl"></div>
-                    <div class="scan-corner corner-tr"></div>
-                    <div class="scan-corner corner-bl"></div>
-                    <div class="scan-corner corner-br"></div>
-
-
-                    <!-- GRID -->
-
-                    <div class="scanner-grid"></div>
-
-
-                    <!-- MOLECULE -->
-
-                    <div class="molecule">
-
-                        <div class="node node-1"></div>
-                        <div class="node node-2"></div>
-                        <div class="node node-3"></div>
-                        <div class="node node-4"></div>
-                        <div class="node node-5"></div>
-                        <div class="node node-6"></div>
-
-                        <div class="bond bond-1"></div>
-                        <div class="bond bond-2"></div>
-                        <div class="bond bond-3"></div>
-                        <div class="bond bond-4"></div>
-                        <div class="bond bond-5"></div>
-
-                        <div class="molecule-core">
-                            PC
-                        </div>
-
-                    </div>
-
-
-                    <!-- SCAN BEAM -->
-
+                    <div class="scan-lines"></div>
                     <div class="scan-beam"></div>
 
-
-                    <!-- DATA POINTS -->
-
-                    <div class="scan-data data-one">
-
-                        <span class="data-dot"></span>
-
-                        <div>
-                            <small>CYP PATHWAY</small>
-                            <strong>ANALYZING</strong>
-                        </div>
-
+                    <div class="molecule molecule-a">
+                        <span class="atom center">A</span>
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                        <i></i>
                     </div>
 
-
-                    <div class="scan-data data-two">
-
-                        <span class="data-dot"></span>
-
-                        <div>
-                            <small>MOLECULAR BINDING</small>
-                            <strong>DETECTED</strong>
-                        </div>
-
+                    <div class="molecule molecule-b">
+                        <span class="atom center">B</span>
+                        <i></i>
+                        <i></i>
+                        <i></i>
                     </div>
 
+                    <div class="connection-line"></div>
 
-                    <div class="scan-data data-three">
-
-                        <span class="data-dot"></span>
-
-                        <div>
-                            <small>RISK VECTOR</small>
-                            <strong>CALCULATING</strong>
+                    <div class="scanner-center">
+                        <div class="scanner-ring ring-one"></div>
+                        <div class="scanner-ring ring-two"></div>
+                        <div class="scanner-core">
+                            <span>PC</span>
                         </div>
-
                     </div>
 
+                    <div class="corner corner-tl"></div>
+                    <div class="corner corner-tr"></div>
+                    <div class="corner corner-bl"></div>
+                    <div class="corner corner-br"></div>
 
-                    <!-- CENTER STATUS -->
-
-                    <div class="scanner-center-status">
-
-                        <div class="scanner-ring">
-
-                            <div class="scanner-ring-inner">
-                                AI
-                            </div>
-
-                        </div>
-
-                        <span>
-                            SCANNING MOLECULAR SIGNATURE
-                        </span>
-
-                    </div>
+                    <div class="scan-code code-one">PK / PD</div>
+                    <div class="scan-code code-two">CYP3A4</div>
+                    <div class="scan-code code-three">MOA</div>
+                    <div class="scan-code code-four">RISK</div>
 
                 </div>
-
-
-                <!-- SCANNER FOOTER -->
 
                 <div class="scanner-footer">
 
-                    <span>
-                        <i></i>
-                        SYSTEM READY
-                    </span>
+                    <div>
+                        <span class="scanner-label">SYSTEM</span>
+                        <strong>Clinical Matrix Active</strong>
+                    </div>
 
-                    <span>
-                        LATENCY &lt;10MS
-                    </span>
-
-                    <span>
-                        JSON STREAM 3.0
-                    </span>
+                    <div class="scanner-progress">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
 
                 </div>
 
             </div>
 
-
-            <!-- FLOATING DATA CARD -->
-
-            <div class="floating-card floating-card-one">
-
-                <span class="floating-icon">↯</span>
-
+            <div class="floating-card floating-one">
+                <span class="floating-icon">✓</span>
                 <div>
-                    <small>RISK ENGINE</small>
-                    <strong>ACTIVE</strong>
+                    <strong>Safety Check</strong>
+                    <small>Real-time screening</small>
                 </div>
-
             </div>
 
-
-            <div class="floating-card floating-card-two">
-
-                <span class="floating-icon">◈</span>
-
+            <div class="floating-card floating-two">
+                <span class="floating-icon warning">!</span>
                 <div>
-                    <small>DATABASE</small>
-                    <strong>SYNCED</strong>
+                    <strong>Risk Detected</strong>
+                    <small>Clinical review required</small>
                 </div>
-
             </div>
 
         </div>
 
     </div>
-
 </section>
 
 
+<!-- ================= SYSTEM BAR ================= -->
 
-<!-- =========================================================
-     SYSTEM STRIP
-========================================================= -->
+<section class="system-bar">
+    <div class="container system-grid">
 
-<section class="system-strip">
-
-    <div class="system-strip-inner">
-
-        <div class="system-cell">
-
-            <span class="system-number">01</span>
-
-            <div>
-                <small>PRECISION INDEX</small>
-                <strong>99.8%</strong>
-            </div>
-
+        <div>
+            <span>DATABASE</span>
+            <strong>B.Pharm Drug Library</strong>
         </div>
 
-
-        <div class="system-cell">
-
-            <span class="system-number">02</span>
-
-            <div>
-                <small>CYP450 MAPPING</small>
-                <strong>ENABLED</strong>
-            </div>
-
+        <div>
+            <span>ENGINE</span>
+            <strong>Pharmacovigilance AI</strong>
         </div>
 
-
-        <div class="system-cell">
-
-            <span class="system-number">03</span>
-
-            <div>
-                <small>RISK ENGINE</small>
-                <strong>DYNAMIC</strong>
-            </div>
-
+        <div>
+            <span>ANALYSIS</span>
+            <strong>PK + PD + MOA</strong>
         </div>
 
-
-        <div class="system-cell">
-
-            <span class="system-number">04</span>
-
-            <div>
-                <small>RESPONSE</small>
-                <strong>&lt;10MS</strong>
-            </div>
-
+        <div>
+            <span>STATUS</span>
+            <strong class="online-text">● OPERATIONAL</strong>
         </div>
 
     </div>
-
 </section>
 
 
+<!-- ================= ANALYZER ================= -->
 
-<!-- =========================================================
-     ANALYZER
-========================================================= -->
+<section id="analyzer" class="section">
+    <div class="container">
 
-<section
-    id="analyzer"
-    class="section analyzer-section"
->
-
-    <div class="section-container">
-
-
-        <!-- SECTION HEADER -->
-
-        <div class="section-header">
-
+        <div class="section-heading">
             <div>
-
-                <div class="section-kicker">
-                    02 / ANALYSIS WORKSPACE
-                </div>
-
-                <h2>
-                    Interaction
-                    <span>Analyzer</span>
-                </h2>
-
+                <span class="section-number">01 / ANALYZER</span>
+                <h2>Clinical Interaction Analyzer</h2>
             </div>
 
-
-            <div class="section-description">
-
-                <span class="section-status-dot"></span>
-
-                <p>
-                    Select two medicines and generate
-                    a structured interaction assessment.
-                </p>
-
-            </div>
-
+            <p>
+                Select two medicines and run a pharmacological
+                interaction assessment.
+            </p>
         </div>
 
 
+        <div class="analyzer">
 
-        <!-- PATIENT PROFILE -->
+            <div class="control-panel">
 
-        <div class="patient-panel">
-
-            <div class="panel-label">
-
-                <span class="panel-number">01</span>
-
-                <div>
-                    <strong>PATIENT PROFILE</strong>
-                    <small>RISK MODIFIERS</small>
+                <div class="panel-top">
+                    <span>ANALYSIS INPUT</span>
+                    <span class="panel-code">PC-AI / 001</span>
                 </div>
 
-            </div>
 
+                <div class="drug-field">
 
-            <div class="patient-fields">
-
-
-                <div class="field-group">
-
-                    <label for="patientAge">
-                        AGE PROFILE
+                    <label>
+                        <span>01</span>
+                        PRIMARY DRUG
                     </label>
 
-                    <select id="patientAge">
-
-                        <option value="adult">
-                            Adult
-                        </option>
-
-                        <option value="geriatric">
-                            Geriatric / Elderly
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-                <div class="field-group">
-
-                    <label for="patientRenal">
-                        RENAL STATUS
-                    </label>
-
-                    <select id="patientRenal">
-
-                        <option value="normal">
-                            Normal
-                        </option>
-
-                        <option value="impaired">
-                            Impaired
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-                <div class="field-group">
-
-                    <label for="patientHepatic">
-                        HEPATIC STATUS
-                    </label>
-
-                    <select id="patientHepatic">
-
-                        <option value="normal">
-                            Normal
-                        </option>
-
-                        <option value="impaired">
-                            Impaired
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-                <div class="patient-status">
-
-                    <span class="status-check">✓</span>
-
-                    <div>
-                        <strong>PROFILE READY</strong>
-                        <small>MODIFIERS ENABLED</small>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- ANALYZER WORKSPACE -->
-
-        <div class="analyzer-layout">
-
-
-            <!-- LEFT CONTROL PANEL -->
-
-            <div class="analyzer-control panel">
-
-                <div class="panel-heading">
-
-                    <div class="panel-heading-index">
-                        02
-                    </div>
-
-                    <div>
-
-                        <h3>
-                            Drug Selection
-                        </h3>
-
-                        <p>
-                            Configure interaction pair
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <!-- DRUG 01 -->
-
-                <div class="drug-input-block">
-
-                    <div class="drug-number">
-                        DRUG 01
-                    </div>
-
-
-                    <div class="search-box">
-
-                        <span class="search-symbol">
-                            ⌕
-                        </span>
-
-                        <input
-                            id="search1"
-                            type="text"
-                            placeholder="Search medicine..."
-                            autocomplete="off"
-                        >
-
-                    </div>
-
+                    <input
+                        type="text"
+                        id="search1"
+                        placeholder="Search drug..."
+                        autocomplete="off"
+                    >
 
                     <select id="drug1">
-
-                        <option value="">
-                            Select Drug 01
-                        </option>
-
+                        <option value="">Select primary drug</option>
                     </select>
 
-
-                    <div class="input-hint">
-                        Search by drug name, class or category
-                    </div>
-
                 </div>
 
 
-                <!-- CONNECTION -->
-
-                <div class="drug-connector">
-
-                    <span></span>
-
-                    <div>
-                        INTERACTION
-                    </div>
-
-                    <span></span>
-
+                <div class="connector">
+                    <div></div>
+                    <span>INTERACTION</span>
+                    <div></div>
                 </div>
 
 
-                <!-- DRUG 02 -->
+                <div class="drug-field">
 
-                <div class="drug-input-block">
+                    <label>
+                        <span>02</span>
+                        SECONDARY DRUG
+                    </label>
 
-                    <div class="drug-number">
-                        DRUG 02
-                    </div>
-
-
-                    <div class="search-box">
-
-                        <span class="search-symbol">
-                            ⌕
-                        </span>
-
-                        <input
-                            id="search2"
-                            type="text"
-                            placeholder="Search medicine..."
-                            autocomplete="off"
-                        >
-
-                    </div>
-
+                    <input
+                        type="text"
+                        id="search2"
+                        placeholder="Search drug..."
+                        autocomplete="off"
+                    >
 
                     <select id="drug2">
-
-                        <option value="">
-                            Select Drug 02
-                        </option>
-
+                        <option value="">Select secondary drug</option>
                     </select>
 
+                </div>
 
-                    <div class="input-hint">
-                        Search by drug name, class or category
+
+                <div class="patient-profile">
+
+                    <div class="profile-title">
+                        PATIENT PROFILE
+                    </div>
+
+                    <div class="profile-grid">
+
+                        <div>
+                            <label>AGE GROUP</label>
+                            <select id="patientAge">
+                                <option value="adult">Adult</option>
+                                <option value="geriatric">Geriatric</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label>RENAL STATUS</label>
+                            <select id="patientRenal">
+                                <option value="normal">Normal</option>
+                                <option value="impaired">Impaired</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label>HEPATIC STATUS</label>
+                            <select id="patientHepatic">
+                                <option value="normal">Normal</option>
+                                <option value="impaired">Impaired</option>
+                            </select>
+                        </div>
+
                     </div>
 
                 </div>
 
 
-                <!-- ACTIONS -->
+                <div class="action-row">
 
-                <div class="analyzer-actions">
-
-                    <button
-                        id="runAnalysis"
-                        class="analyze-button"
-                    >
-
-                        <span class="analyze-icon">
-                            ⌁
-                        </span>
-
-                        <span>
-                            RUN ANALYSIS
-                        </span>
-
-                        <span class="analyze-arrow">
-                            →
-                        </span>
-
+                    <button id="runAnalysis" class="analyze-btn">
+                        <span>RUN ANALYSIS</span>
+                        <b>→</b>
                     </button>
 
-
-                    <button
-                        id="clearBtn"
-                        class="reset-button"
-                    >
+                    <button id="clearBtn" class="reset-btn">
                         RESET
                     </button>
 
                 </div>
 
-
-                <div class="keyboard-hint">
-
-                    <span>CTRL</span>
-                    +
-                    <span>ENTER</span>
-
-                    <small>
-                        QUICK ANALYZE
-                    </small>
-
-                </div>
-
             </div>
 
 
+            <!-- RESULT -->
 
-            <!-- RIGHT REPORT PANEL -->
+            <div class="result-panel">
 
-            <div class="analysis-result panel">
-
-                <!-- PLACEHOLDER -->
-
-                <div
-                    id="placeholderView"
-                    class="placeholder-view"
-                >
-
-                    <div class="placeholder-grid"></div>
-
+                <div id="placeholderView" class="placeholder">
 
                     <div class="placeholder-icon">
+                        <span>+</span>
+                    </div>
 
-                        <div class="placeholder-cross">
-                            +
+                    <span class="result-label">READY FOR ANALYSIS</span>
+
+                    <h3>
+                        Clinical intelligence<br>
+                        starts here.
+                    </h3>
+
+                    <p>
+                        Select two drugs from the database to
+                        generate an interaction report.
+                    </p>
+
+                    <div class="placeholder-grid">
+                        <span>PHARMACOKINETICS</span>
+                        <span>PHARMACODYNAMICS</span>
+                        <span>MOA ANALYSIS</span>
+                        <span>RISK SCORING</span>
+                    </div>
+
+                </div>
+
+
+                <div id="reportView" class="report hidden">
+
+                    <div class="report-header">
+
+                        <div>
+                            <span class="report-label">ANALYSIS REPORT</span>
+                            <h3 id="pairTitle">Drug Interaction</h3>
+                        </div>
+
+                        <div id="severityPill" class="severity-pill">
+                            -
                         </div>
 
                     </div>
 
 
-                    <div class="placeholder-content">
+                    <div class="risk-box">
 
-                        <span>
-                            WAITING FOR INPUT
-                        </span>
+                        <div>
+                            <span>CLINICAL RISK SCORE</span>
+                            <strong id="riskScore">--</strong>
+                        </div>
 
-                        <h3>
-                            Clinical report
-                            <br>
-                            will appear here.
-                        </h3>
-
-                        <p>
-                            Select two drugs from the
-                            knowledgebase to initialize
-                            the interaction engine.
-                        </p>
+                        <div class="risk-meter">
+                            <div id="riskMeter"></div>
+                        </div>
 
                     </div>
 
 
-                    <div class="placeholder-code">
+                    <div class="report-grid">
 
-                        <span>STATUS</span>
+                        <div class="report-item">
+                            <span>INTERACTION TYPE</span>
+                            <strong id="interactionType">--</strong>
+                        </div>
 
-                        <strong>
-                            READY_
-                        </strong>
+                        <div class="report-item">
+                            <span>PATHWAY</span>
+                            <strong id="pathway">--</strong>
+                        </div>
 
+                        <div class="report-item full">
+                            <span>CLINICAL RISK</span>
+                            <p id="riskText">--</p>
+                        </div>
+
+                        <div class="report-item full">
+                            <span>MECHANISM OF ACTION</span>
+                            <p id="moaText">--</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="recommendation">
+                        <span>RECOMMENDATION</span>
+                        <p id="recommendationText">--</p>
                     </div>
 
                 </div>
 
+            </div>
 
-                <!-- REPORT -->
+        </div>
 
-                <div
-                    id="reportView"
-                    class="report-view hidden"
-                ></div>
+    </div>
+</section>
 
+
+<!-- ================= ALERTS ================= -->
+
+<section id="alert" class="section alerts-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+            <div>
+                <span class="section-number">02 / ALERTS</span>
+                <h2>Clinical Risk Scenarios</h2>
+            </div>
+
+            <p>
+                Common high-value interaction scenarios available
+                for rapid demonstration.
+            </p>
+        </div>
+
+
+        <div class="scenario-grid">
+
+            <button class="scenario-card"
+                onclick="triggerPreset('aspirin','warfarin')">
+
+                <div class="scenario-top">
+                    <span>CASE 001</span>
+                    <b class="high">HIGH</b>
+                </div>
+
+                <h3>Aspirin + Warfarin</h3>
+                <p>Bleeding risk</p>
+
+                <div class="scenario-arrow">→</div>
+            </button>
+
+
+            <button class="scenario-card"
+                onclick="triggerPreset('paracetamol','alcohol')">
+
+                <div class="scenario-top">
+                    <span>CASE 002</span>
+                    <b class="high">HIGH</b>
+                </div>
+
+                <h3>Paracetamol + Alcohol</h3>
+                <p>Hepatotoxicity risk</p>
+
+                <div class="scenario-arrow">→</div>
+            </button>
+
+
+            <button class="scenario-card"
+                onclick="triggerPreset('ciprofloxacin','antacid')">
+
+                <div class="scenario-top">
+                    <span>CASE 003</span>
+                    <b class="moderate">MODERATE</b>
+                </div>
+
+                <h3>Ciprofloxacin + Antacid</h3>
+                <p>Reduced absorption</p>
+
+                <div class="scenario-arrow">→</div>
+            </button>
+
+
+            <button class="scenario-card"
+                onclick="triggerPreset('atenolol','verapamil')">
+
+                <div class="scenario-top">
+                    <span>CASE 004</span>
+                    <b class="high">HIGH</b>
+                </div>
+
+                <h3>Atenolol + Verapamil</h3>
+                <p>Bradycardia / AV block</p>
+
+                <div class="scenario-arrow">→</div>
+            </button>
+
+
+            <button class="scenario-card"
+                onclick="triggerPreset('atorvastatin','clarithromycin')">
+
+                <div class="scenario-top">
+                    <span>CASE 005</span>
+                    <b class="high">HIGH</b>
+                </div>
+
+                <h3>Atorvastatin + Clarithromycin</h3>
+                <p>CYP3A4 interaction</p>
+
+                <div class="scenario-arrow">→</div>
+            </button>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ================= MATRIX ================= -->
+
+<section class="section matrix-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+            <div>
+                <span class="section-number">03 / MATRIX</span>
+                <h2>Interaction Matrix</h2>
+            </div>
+
+            <p>
+                Browse interaction profiles stored in the
+                local clinical intelligence database.
+            </p>
+        </div>
+
+
+        <div class="matrix-controls">
+
+            <button class="matrix-filter active" data-filter="all">
+                ALL
+            </button>
+
+            <button class="matrix-filter" data-filter="high">
+                HIGH
+            </button>
+
+            <button class="matrix-filter" data-filter="moderate">
+                MODERATE
+            </button>
+
+        </div>
+
+
+        <div id="matrixGrid" class="matrix-grid"></div>
+
+    </div>
+</section>
+
+
+<!-- ================= ABOUT ================= -->
+
+<section id="about" class="section about-section">
+
+    <div class="container about-grid">
+
+        <div>
+            <span class="section-number">04 / ABOUT</span>
+
+            <h2>
+                Built for the next generation
+                of pharmacy intelligence.
+            </h2>
+
+            <p>
+                PharmaCheck AI combines a structured drug database,
+                interaction rules and clinical risk scoring into a
+                clean pharmacovigilance interface.
+            </p>
+        </div>
+
+
+        <div class="about-cards">
+
+            <div class="about-card">
+                <span>01</span>
+                <h3>Drug Intelligence</h3>
+                <p>
+                    Structured drug information including
+                    therapeutic class and pharmacological context.
+                </p>
+            </div>
+
+            <div class="about-card">
+                <span>02</span>
+                <h3>Risk Detection</h3>
+                <p>
+                    Interaction scenarios are translated into
+                    readable clinical risk reports.
+                </p>
+            </div>
+
+            <div class="about-card">
+                <span>03</span>
+                <h3>Pharmacovigilance</h3>
+                <p>
+                    Designed as an educational clinical decision
+                    support concept for pharmacy students.
+                </p>
+            </div>
+
+            <div class="about-card">
+                <span>04</span>
+                <h3>AI Ready</h3>
+                <p>
+                    Interface architecture prepared for future
+                    AI-powered clinical intelligence modules.
+                </p>
             </div>
 
         </div>
@@ -902,5 +678,42 @@
 </section>
 
 
+<!-- ================= DISCLAIMER ================= -->
 
-<!-- =====
+<section class="disclaimer-section">
+
+    <div class="container disclaimer">
+
+        <div class="disclaimer-icon">!</div>
+
+        <div>
+            <strong>EDUCATIONAL USE ONLY</strong>
+
+            <p>
+                PharmaCheck AI is a demonstration and educational
+                pharmacovigilance platform. Interaction data is not
+                exhaustive and should not be used as a substitute
+                for professional clinical or pharmacist judgment.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="site-footer">
+
+    <div class="container footer-main">
+
+        <div>
+            <div class="footer-brand">
+                <div class="brand-logo small">✚</div>
+
+                <div>
+                    <strong>PharmaCheck AI</strong>
+                    <span>Clinical Intelligenc
