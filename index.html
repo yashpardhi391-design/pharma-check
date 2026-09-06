@@ -2,291 +2,905 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pharma-Check AI | Next-Gen Pharmacovigilance Engine</title>
-    <!-- Google Fonts -->
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="PharmaCheck AI — Clinical Drug Interaction & Pharmacovigilance Engine"
+    >
+
+    <title>PharmaCheck AI | Clinical Intelligence Engine</title>
+
+    <!-- =====================================================
+         FONTS
+    ====================================================== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- CSS File Link - Make sure style.css is in the same folder -->
-    <link rel="stylesheet" href="./style.css" type="text/css">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- =====================================================
+         STYLES
+    ====================================================== -->
+    <link rel="stylesheet" href="./style.css">
 </head>
+
+
 <body>
 
-    <!-- Navigation Header -->
-    <header class="site-header">
-        <div class="container header-container">
-            <div class="brand-logo">
-                <div class="logo-shield">🛡️</div>
-                <div class="brand-text">
-                    <span class="brand-name">PharmaCheck <span class="badge-v3">v3.0 PRO</span></span>
-                    <span class="brand-tagline">Clinical Interaction & Pharmacovigilance Suite</span>
-                </div>
-            </div>
-            <nav class="nav-links">
-                <a href="#analyzer" class="nav-item active">Analyzer</a>
-                <a href="#presets" class="nav-item">Quick Scenarios</a>
-                <a href="#matrix" class="nav-item">Interaction Matrix</a>
-            </nav>
-            <div class="header-status">
-                <span class="status-dot"></span> Dynamic Engine Active
-            </div>
-        </div>
-    </header>
+<!-- =========================================================
+     GLOBAL BACKGROUND
+========================================================= -->
 
-    <!-- Hero Section -->
-    <section class="hero-wrapper">
-        <div class="container hero-content">
-            <div class="hero-badge">
-                <span class="badge-icon">✨</span> Clinical AI Engine 3.0
+<div class="page-grid"></div>
+
+<div class="ambient ambient-one"></div>
+<div class="ambient ambient-two"></div>
+
+
+<!-- =========================================================
+     HEADER / NAVIGATION
+========================================================= -->
+
+<header class="site-header">
+
+    <div class="header-inner">
+
+        <!-- BRAND -->
+
+        <a href="#home" class="brand">
+
+            <div class="brand-mark">
+                <span class="brand-cross">+</span>
             </div>
-            <h1 class="hero-title">
-                Check Drug Interactions.<br>
-                <span class="highlight-text">Predict Clinical Risks Instantly.</span>
+
+            <div class="brand-copy">
+
+                <div class="brand-name">
+                    Pharma<span>Check</span>
+                    <sup>AI</sup>
+                </div>
+
+                <div class="brand-subtitle">
+                    CLINICAL INTELLIGENCE ENGINE
+                </div>
+
+            </div>
+
+        </a>
+
+
+        <!-- NAVIGATION -->
+
+        <nav class="main-nav">
+
+            <a href="#home" class="nav-link active">
+                <span>01</span>
+                HOME
+            </a>
+
+            <a href="#analyzer" class="nav-link">
+                <span>02</span>
+                ANALYZER
+            </a>
+
+            <a href="#alerts" class="nav-link">
+                <span>03</span>
+                ALERTS
+            </a>
+
+            <a href="#about" class="nav-link">
+                <span>04</span>
+                ABOUT
+            </a>
+
+        </nav>
+
+
+        <!-- ENGINE STATUS -->
+
+        <div class="engine-status">
+
+            <span class="status-pulse"></span>
+
+            <div>
+                <strong>ENGINE ONLINE</strong>
+                <small>REAL-TIME CORE</small>
+            </div>
+
+        </div>
+
+
+        <!-- MOBILE MENU -->
+
+        <button
+            class="mobile-menu"
+            aria-label="Open navigation"
+        >
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<!-- =========================================================
+     MAIN
+========================================================= -->
+
+<main>
+
+
+<!-- =========================================================
+     HOME / HERO
+========================================================= -->
+
+<section id="home" class="hero-section">
+
+    <div class="hero-container">
+
+
+        <!-- LEFT CONTENT -->
+
+        <div class="hero-content">
+
+            <div class="eyebrow">
+
+                <span class="eyebrow-dot"></span>
+
+                PHARMACOVIGILANCE / AI SYSTEM
+
+                <span class="eyebrow-line"></span>
+
+                v4.0
+
+            </div>
+
+
+            <h1>
+
+                Drug interactions.
+                <br>
+
+                <span>Decoded instantly.</span>
+
             </h1>
+
+
             <p class="hero-description">
-                Real-time pharmacokinetic and pharmacodynamic collision checker. Analyze multi-drug pathways, CYP450 enzyme inhibitions, and patient-specific risk factors.
+
+                A clinical intelligence workspace for analyzing
+                drug interactions, pharmacological pathways and
+                patient-specific risk factors.
+
             </p>
 
-            <div class="hero-stats-grid">
-                <div class="hero-stat-card">
-                    <h3>99.8%</h3>
-                    <span>Precision Index</span>
-                </div>
-                <div class="hero-stat-card">
-                    <h3>CYP450</h3>
-                    <span>Enzyme Mapping</span>
-                </div>
-                <div class="hero-stat-card">
-                    <h3>&lt;10ms</h3>
-                    <span>Matrix Response</span>
-                </div>
-                <div class="hero-stat-card accent-card">
-                    <h3>JSON 3.0</h3>
-                    <span>Dynamic Stream</span>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Patient Context Adjustment -->
-    <section class="patient-bar-section">
-        <div class="container">
-            <div class="patient-bar-card">
-                <div class="patient-bar-header">
-                    <span class="p-icon">👤</span>
+            <!-- HERO ACTIONS -->
+
+            <div class="hero-actions">
+
+                <a
+                    href="#analyzer"
+                    class="btn btn-primary"
+                >
+                    <span>Launch Analyzer</span>
+                    <span class="btn-arrow">↗</span>
+                </a>
+
+                <a
+                    href="#about"
+                    class="btn btn-secondary"
+                >
+                    Explore Platform
+                </a>
+
+            </div>
+
+
+            <!-- TRUST / TECH INFO -->
+
+            <div class="hero-meta">
+
+                <div class="hero-meta-item">
+
+                    <strong>250+</strong>
+
+                    <span>
+                        DRUG PROFILES
+                    </span>
+
+                </div>
+
+                <div class="meta-divider"></div>
+
+                <div class="hero-meta-item">
+
+                    <strong>20+</strong>
+
+                    <span>
+                        INTERACTION MODELS
+                    </span>
+
+                </div>
+
+                <div class="meta-divider"></div>
+
+                <div class="hero-meta-item">
+
+                    <strong>01–04</strong>
+
+                    <span>
+                        B.PHARM YEARS
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             SCANNING TERMINAL
+        ================================================== -->
+
+        <div class="scanner-wrapper">
+
+            <div class="scanner-card">
+
+
+                <!-- TOP BAR -->
+
+                <div class="scanner-topbar">
+
+                    <div class="scanner-title">
+
+                        <span class="scanner-icon">⌬</span>
+
+                        <div>
+                            <strong>CLINICAL SCANNER</strong>
+                            <small>PHARMACOKINETIC CORE</small>
+                        </div>
+
+                    </div>
+
+
+                    <div class="scanner-live">
+
+                        <span></span>
+
+                        LIVE
+
+                    </div>
+
+                </div>
+
+
+                <!-- SCANNER BODY -->
+
+                <div class="scanner-body">
+
+                    <div class="scan-corner corner-tl"></div>
+                    <div class="scan-corner corner-tr"></div>
+                    <div class="scan-corner corner-bl"></div>
+                    <div class="scan-corner corner-br"></div>
+
+
+                    <!-- GRID -->
+
+                    <div class="scanner-grid"></div>
+
+
+                    <!-- MOLECULE -->
+
+                    <div class="molecule">
+
+                        <div class="node node-1"></div>
+                        <div class="node node-2"></div>
+                        <div class="node node-3"></div>
+                        <div class="node node-4"></div>
+                        <div class="node node-5"></div>
+                        <div class="node node-6"></div>
+
+                        <div class="bond bond-1"></div>
+                        <div class="bond bond-2"></div>
+                        <div class="bond bond-3"></div>
+                        <div class="bond bond-4"></div>
+                        <div class="bond bond-5"></div>
+
+                        <div class="molecule-core">
+                            PC
+                        </div>
+
+                    </div>
+
+
+                    <!-- SCAN BEAM -->
+
+                    <div class="scan-beam"></div>
+
+
+                    <!-- DATA POINTS -->
+
+                    <div class="scan-data data-one">
+
+                        <span class="data-dot"></span>
+
+                        <div>
+                            <small>CYP PATHWAY</small>
+                            <strong>ANALYZING</strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="scan-data data-two">
+
+                        <span class="data-dot"></span>
+
+                        <div>
+                            <small>MOLECULAR BINDING</small>
+                            <strong>DETECTED</strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="scan-data data-three">
+
+                        <span class="data-dot"></span>
+
+                        <div>
+                            <small>RISK VECTOR</small>
+                            <strong>CALCULATING</strong>
+                        </div>
+
+                    </div>
+
+
+                    <!-- CENTER STATUS -->
+
+                    <div class="scanner-center-status">
+
+                        <div class="scanner-ring">
+
+                            <div class="scanner-ring-inner">
+                                AI
+                            </div>
+
+                        </div>
+
+                        <span>
+                            SCANNING MOLECULAR SIGNATURE
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SCANNER FOOTER -->
+
+                <div class="scanner-footer">
+
+                    <span>
+                        <i></i>
+                        SYSTEM READY
+                    </span>
+
+                    <span>
+                        LATENCY &lt;10MS
+                    </span>
+
+                    <span>
+                        JSON STREAM 3.0
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- FLOATING DATA CARD -->
+
+            <div class="floating-card floating-card-one">
+
+                <span class="floating-icon">↯</span>
+
+                <div>
+                    <small>RISK ENGINE</small>
+                    <strong>ACTIVE</strong>
+                </div>
+
+            </div>
+
+
+            <div class="floating-card floating-card-two">
+
+                <span class="floating-icon">◈</span>
+
+                <div>
+                    <small>DATABASE</small>
+                    <strong>SYNCED</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     SYSTEM STRIP
+========================================================= -->
+
+<section class="system-strip">
+
+    <div class="system-strip-inner">
+
+        <div class="system-cell">
+
+            <span class="system-number">01</span>
+
+            <div>
+                <small>PRECISION INDEX</small>
+                <strong>99.8%</strong>
+            </div>
+
+        </div>
+
+
+        <div class="system-cell">
+
+            <span class="system-number">02</span>
+
+            <div>
+                <small>CYP450 MAPPING</small>
+                <strong>ENABLED</strong>
+            </div>
+
+        </div>
+
+
+        <div class="system-cell">
+
+            <span class="system-number">03</span>
+
+            <div>
+                <small>RISK ENGINE</small>
+                <strong>DYNAMIC</strong>
+            </div>
+
+        </div>
+
+
+        <div class="system-cell">
+
+            <span class="system-number">04</span>
+
+            <div>
+                <small>RESPONSE</small>
+                <strong>&lt;10MS</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     ANALYZER
+========================================================= -->
+
+<section
+    id="analyzer"
+    class="section analyzer-section"
+>
+
+    <div class="section-container">
+
+
+        <!-- SECTION HEADER -->
+
+        <div class="section-header">
+
+            <div>
+
+                <div class="section-kicker">
+                    02 / ANALYSIS WORKSPACE
+                </div>
+
+                <h2>
+                    Interaction
+                    <span>Analyzer</span>
+                </h2>
+
+            </div>
+
+
+            <div class="section-description">
+
+                <span class="section-status-dot"></span>
+
+                <p>
+                    Select two medicines and generate
+                    a structured interaction assessment.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- PATIENT PROFILE -->
+
+        <div class="patient-panel">
+
+            <div class="panel-label">
+
+                <span class="panel-number">01</span>
+
+                <div>
+                    <strong>PATIENT PROFILE</strong>
+                    <small>RISK MODIFIERS</small>
+                </div>
+
+            </div>
+
+
+            <div class="patient-fields">
+
+
+                <div class="field-group">
+
+                    <label for="patientAge">
+                        AGE PROFILE
+                    </label>
+
+                    <select id="patientAge">
+
+                        <option value="adult">
+                            Adult
+                        </option>
+
+                        <option value="geriatric">
+                            Geriatric / Elderly
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="field-group">
+
+                    <label for="patientRenal">
+                        RENAL STATUS
+                    </label>
+
+                    <select id="patientRenal">
+
+                        <option value="normal">
+                            Normal
+                        </option>
+
+                        <option value="impaired">
+                            Impaired
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="field-group">
+
+                    <label for="patientHepatic">
+                        HEPATIC STATUS
+                    </label>
+
+                    <select id="patientHepatic">
+
+                        <option value="normal">
+                            Normal
+                        </option>
+
+                        <option value="impaired">
+                            Impaired
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="patient-status">
+
+                    <span class="status-check">✓</span>
+
                     <div>
-                        <h3>Patient Clinical Profile</h3>
-                        <p>Adjust risk modifiers based on clinical physiological state</p>
+                        <strong>PROFILE READY</strong>
+                        <small>MODIFIERS ENABLED</small>
                     </div>
-                </div>
-                <div class="patient-bar-controls">
-                    <div class="control-box">
-                        <label>AGE GROUP</label>
-                        <select id="patientAge">
-                            <option value="adult">Adult (18-64 yrs)</option>
-                            <option value="pediatric">Pediatric (&lt;18 yrs)</option>
-                            <option value="geriatric">Geriatric (65+ yrs) [+15% Risk]</option>
-                        </select>
-                    </div>
-                    <div class="control-box">
-                        <label>RENAL FUNCTION</label>
-                        <select id="patientRenal">
-                            <option value="normal">Normal (>60 mL/min)</option>
-                            <option value="impaired">Impaired Renal (&lt;30 mL/min)</option>
-                        </select>
-                    </div>
-                    <div class="control-box">
-                        <label>HEPATIC FUNCTION</label>
-                        <select id="patientHepatic">
-                            <option value="normal">Normal Liver Function</option>
-                            <option value="impaired">Impaired Hepatic Metabolism</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Main Content Workspace -->
-    <main class="container main-workspace" id="analyzer">
-
-        <!-- Quick Scenarios Presets -->
-        <div class="section-card" id="presets">
-            <div class="card-title-row">
-                <div>
-                    <h2>⚡ Fast Clinical Scenarios</h2>
-                    <p>Select predefined high-risk drug combinations</p>
                 </div>
-                <span class="chip-tag">One-Click Test</span>
+
             </div>
-            <div class="presets-row">
-                <button class="preset-btn" onclick="triggerPreset('aspirin', 'warfarin')">🩸 Aspirin + Warfarin <span>Bleeding Risk</span></button>
-                <button class="preset-btn" onclick="triggerPreset('paracetamol', 'alcohol')">🍷 Paracetamol + Alcohol <span>Hepatotoxicity</span></button>
-                <button class="preset-btn" onclick="triggerPreset('ciprofloxacin', 'antacid')">💊 Ciprofloxacin + Antacid <span>Absorption Block</span></button>
-                <button class="preset-btn" onclick="triggerPreset('atenolol', 'verapamil')">🫀 Atenolol + Verapamil <span>AV Node Block</span></button>
-                <button class="preset-btn" onclick="triggerPreset('atorvastatin', 'clarithromycin')">🫁 Atorvastatin + Clarithromycin <span>Myopathy</span></button>
-            </div>
+
         </div>
 
-        <!-- Analyzer Core Grid -->
-        <div class="analyzer-two-col">
-            
-            <!-- Left Input Form -->
-            <div class="section-card form-card">
-                <div class="card-title-row">
-                    <h2>01. Select Drug Pair</h2>
-                    <span class="step-num">Step 1</span>
+
+
+        <!-- ANALYZER WORKSPACE -->
+
+        <div class="analyzer-layout">
+
+
+            <!-- LEFT CONTROL PANEL -->
+
+            <div class="analyzer-control panel">
+
+                <div class="panel-heading">
+
+                    <div class="panel-heading-index">
+                        02
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Drug Selection
+                        </h3>
+
+                        <p>
+                            Configure interaction pair
+                        </p>
+
+                    </div>
+
                 </div>
 
-                <!-- Search 1 -->
-                <div class="input-field-group">
-                    <label>PRIMARY MEDICINE (DRUG A)</label>
-                    <input type="text" id="search1" placeholder="Type medicine name e.g. Paracetamol..." class="search-bar">
-                    <select id="drug1" size="4" class="dropdown-list"></select>
+
+                <!-- DRUG 01 -->
+
+                <div class="drug-input-block">
+
+                    <div class="drug-number">
+                        DRUG 01
+                    </div>
+
+
+                    <div class="search-box">
+
+                        <span class="search-symbol">
+                            ⌕
+                        </span>
+
+                        <input
+                            id="search1"
+                            type="text"
+                            placeholder="Search medicine..."
+                            autocomplete="off"
+                        >
+
+                    </div>
+
+
+                    <select id="drug1">
+
+                        <option value="">
+                            Select Drug 01
+                        </option>
+
+                    </select>
+
+
+                    <div class="input-hint">
+                        Search by drug name, class or category
+                    </div>
+
                 </div>
 
-                <div class="divider-vs">
-                    <span>INTERACTS WITH</span>
+
+                <!-- CONNECTION -->
+
+                <div class="drug-connector">
+
+                    <span></span>
+
+                    <div>
+                        INTERACTION
+                    </div>
+
+                    <span></span>
+
                 </div>
 
-                <!-- Search 2 -->
-                <div class="input-field-group">
-                    <label>SECONDARY MEDICINE (DRUG B)</label>
-                    <input type="text" id="search2" placeholder="Type medicine name e.g. Alcohol..." class="search-bar">
-                    <select id="drug2" size="4" class="dropdown-list"></select>
+
+                <!-- DRUG 02 -->
+
+                <div class="drug-input-block">
+
+                    <div class="drug-number">
+                        DRUG 02
+                    </div>
+
+
+                    <div class="search-box">
+
+                        <span class="search-symbol">
+                            ⌕
+                        </span>
+
+                        <input
+                            id="search2"
+                            type="text"
+                            placeholder="Search medicine..."
+                            autocomplete="off"
+                        >
+
+                    </div>
+
+
+                    <select id="drug2">
+
+                        <option value="">
+                            Select Drug 02
+                        </option>
+
+                    </select>
+
+
+                    <div class="input-hint">
+                        Search by drug name, class or category
+                    </div>
+
                 </div>
 
-                <div class="button-group">
-                    <button id="runAnalysis" class="btn-primary">
-                        <span>ANALYZE INTERACTION</span>
-                        <small>Run Dynamic JS Core →</small>
+
+                <!-- ACTIONS -->
+
+                <div class="analyzer-actions">
+
+                    <button
+                        id="runAnalysis"
+                        class="analyze-button"
+                    >
+
+                        <span class="analyze-icon">
+                            ⌁
+                        </span>
+
+                        <span>
+                            RUN ANALYSIS
+                        </span>
+
+                        <span class="analyze-arrow">
+                            →
+                        </span>
+
                     </button>
-                    <button id="clearBtn" class="btn-secondary">Reset</button>
+
+
+                    <button
+                        id="clearBtn"
+                        class="reset-button"
+                    >
+                        RESET
+                    </button>
+
                 </div>
+
+
+                <div class="keyboard-hint">
+
+                    <span>CTRL</span>
+                    +
+                    <span>ENTER</span>
+
+                    <small>
+                        QUICK ANALYZE
+                    </small>
+
+                </div>
+
             </div>
 
-            <!-- Right Output Report Card -->
-            <div class="section-card report-card">
-                <div id="placeholderView" class="empty-state">
-                    <div class="empty-icon">🔬</div>
-                    <h3>Ready for Clinical Analysis</h3>
-                    <p>Enter medicine names or select from the options to generate a real-time risk assessment report.</p>
+
+
+            <!-- RIGHT REPORT PANEL -->
+
+            <div class="analysis-result panel">
+
+                <!-- PLACEHOLDER -->
+
+                <div
+                    id="placeholderView"
+                    class="placeholder-view"
+                >
+
+                    <div class="placeholder-grid"></div>
+
+
+                    <div class="placeholder-icon">
+
+                        <div class="placeholder-cross">
+                            +
+                        </div>
+
+                    </div>
+
+
+                    <div class="placeholder-content">
+
+                        <span>
+                            WAITING FOR INPUT
+                        </span>
+
+                        <h3>
+                            Clinical report
+                            <br>
+                            will appear here.
+                        </h3>
+
+                        <p>
+                            Select two drugs from the
+                            knowledgebase to initialize
+                            the interaction engine.
+                        </p>
+
+                    </div>
+
+
+                    <div class="placeholder-code">
+
+                        <span>STATUS</span>
+
+                        <strong>
+                            READY_
+                        </strong>
+
+                    </div>
+
                 </div>
 
-                <div id="reportView" class="active-report" style="display: none;">
-                    <div class="report-top">
-                        <div>
-                            <span class="report-badge" id="reportCode">REF-00000</span>
-                            <h2 id="pairTitle" class="pair-heading">Drug A + Drug B</h2>
-                        </div>
-                        <span id="severityPill" class="sev-tag">HIGH SEVERITY</span>
-                    </div>
 
-                    <!-- Risk Meter Bar -->
-                    <div class="risk-meter-container">
-                        <div class="risk-meter-header">
-                            <span>COMPOSITE RISK INDEX</span>
-                            <strong id="riskScoreVal">0%</strong>
-                        </div>
-                        <div class="meter-track">
-                            <div id="gaugeBarInner" class="meter-fill"></div>
-                        </div>
-                        <small id="riskContextNote" class="meter-footnote">* Standard baseline assessment.</small>
-                    </div>
+                <!-- REPORT -->
 
-                    <!-- Quick Metrics -->
-                    <div class="metrics-grid">
-                        <div class="metric-box">
-                            <span class="m-label">INTERACTION TYPE</span>
-                            <strong id="interType">-</strong>
-                        </div>
-                        <div class="metric-box">
-                            <span class="m-label">TARGET PATHWAY</span>
-                            <strong id="enzymePath">-</strong>
-                        </div>
-                    </div>
+                <div
+                    id="reportView"
+                    class="report-view hidden"
+                ></div>
 
-                    <!-- Detailed Info Blocks -->
-                    <div class="info-card risk-bg">
-                        <h4>⚠️ Primary Clinical Toxicity & Risk</h4>
-                        <p id="primaryRiskDesc">-</p>
-                    </div>
-
-                    <div class="info-card mechanism-bg">
-                        <h4>🧬 Pharmacokinetic Mechanism (MOA)</h4>
-                        <p id="moaDesc">-</p>
-                    </div>
-
-                    <div class="info-card recommendation-bg">
-                        <h4>🛡️ Clinical Action Plan & Protocol</h4>
-                        <p id="actionDesc">-</p>
-                    </div>
-                </div>
             </div>
 
         </div>
 
-        <!-- Matrix Explorer -->
-        <div class="section-card" id="matrix">
-            <div class="card-title-row">
-                <div>
-                    <h2>📚 Interaction Matrix Knowledgebase</h2>
-                    <p>Full JSON records currently active in memory</p>
-                </div>
-                <div class="tab-filters">
-                    <button class="tab-btn active" onclick="filterMatrix('all', this)">All</button>
-                    <button class="tab-btn" onclick="filterMatrix('HIGH', this)">High Severity</button>
-                    <button class="tab-btn" onclick="filterMatrix('MODERATE', this)">Moderate</button>
-                </div>
-            </div>
+    </div>
 
-            <div class="matrix-cards-grid" id="matrixGrid">
-                <!-- Javascript dynamic population -->
-            </div>
-        </div>
+</section>
 
-    </main>
 
-    <!-- Developer Footer -->
-    <footer class="site-footer">
-        <div class="container footer-content">
-            <div class="dev-banner-card">
-                <div class="dev-header">
-                    <span class="dev-chip">PROJECT CREDITS & ATTRIBUTION</span>
-                </div>
-                <div class="dev-names-wrapper">
-                    <div class="dev-profile">
-                        <div class="dev-avatar">YP</div>
-                        <div>
-                            <strong>Yash Pardhi</strong>
-                            <span class="role-badge dev-role">Lead Developer & Full-Stack Architect</span>
-                        </div>
-                    </div>
-                    
-                    <div class="dev-divider"></div>
-                    
-                    <div class="dev-profile">
-                        <div class="dev-avatar concept-avatar">MM</div>
-                        <div>
-                            <strong>Mohamad Muaaj Mansuri</strong>
-                            <span class="role-badge concept-role">Project Concept & Medical Vision</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="footer-bottom-row">
-                <p>© 2026 PharmaCheck AI Clinical Technologies. All rights reserved.</p>
-                <div class="footer-meta">
-                    <span>Healthcare Innovation Practice</span> • <span>Educational Clinical Tool</span>
-                </div>
-            </div>
-        </div>
-    </footer>
 
-    <!-- JavaScript File Link -->
-    <script src="./script.js"></script>
-</body>
-</html>
+<!-- =====
