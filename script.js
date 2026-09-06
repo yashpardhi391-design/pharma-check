@@ -1,262 +1,584 @@
-// 1. JSON DRUG DATABASE MATRIX
-const pharmaDatabase = {
-    "drugs": [
-        { "id": "aspirin", "name": "Aspirin", "class": "NSAID / Antiplatelet" },
-        { "id": "warfarin", "name": "Warfarin", "class": "Vitamin K Antagonist" },
-        { "id": "paracetamol", "name": "Paracetamol", "class": "Analgesic / Antipyretic" },
-        { "id": "alcohol", "name": "Ethanol / Alcohol", "class": "CNS Depressant / Enzyme Inducer" },
-        { "id": "ciprofloxacin", "name": "Ciprofloxacin", "class": "Fluoroquinolone Antibiotic" },
-        { "id": "antacid", "name": "Antacid (Al/Mg)", "class": "Phosphate Binder / Antacid" },
-        { "id": "atenolol", "name": "Atenolol", "class": "Beta-1 Selective Blocker" },
-        { "id": "verapamil", "name": "Verapamil", "class": "Non-Dihydropyridine CCB" },
-        { "id": "atorvastatin", "name": "Atorvastatin", "class": "HMG-CoA Reductase Inhibitor" },
-        { "id": "clarithromycin", "name": "Clarithromycin", "class": "Macrolide Antibiotic" }
-    ],
-    "interactions": {
-        "aspirin-warfarin": {
-            "severity": "HIGH",
-            "score": 88,
-            "type": "Synergistic Hemostasis Inhibition",
-            "enzyme": "COX-1 & VKORC1 Complex",
-            "risk": "Major Gastrointestinal Hemorrhage & Prolonged Bleeding",
-            "moa": "Aspirin inhibits platelet aggregation while Warfarin inhibits clotting factor synthesis. Dual blockade exponentially raises bleeding risk.",
-            "recommendation": "Avoid concurrent use. If necessary, monitor INR closely and consider gastroprotection (PPI)."
-        },
-        "paracetamol-alcohol": {
-            "severity": "HIGH",
-            "score": 85,
-            "type": "Metabolic Hepatotoxicity",
-            "enzyme": "CYP2E1 Induction / NAPQI",
-            "risk": "Acute Liver Failure & Severe Hepatic Necrosis",
-            "moa": "Chronic alcohol intake induces CYP2E1, converting paracetamol rapidly into toxic NAPQI metabolite, overwhelming liver glutathione.",
-            "recommendation": "Restrict paracetamol dose to <2,000 mg/day in chronic alcohol consumers."
-        },
-        "ciprofloxacin-antacid": {
-            "severity": "MODERATE",
-            "score": 58,
-            "type": "Pharmacokinetic Absorption Chelation",
-            "enzyme": "Gastrointestinal Chelation Complex",
-            "risk": "Treatment Failure Due to Poor Antibiotic Absorption",
-            "moa": "Divalent and trivalent cations (Mg²⁺/Al³⁺) form insoluble chelate complexes with Ciprofloxacin, reducing absorption by ~75%.",
-            "recommendation": "Administer Ciprofloxacin 2 hours before or 6 hours after antacid dosing."
-        },
-        "atenolol-verapamil": {
-            "severity": "HIGH",
-            "score": 92,
-            "type": "Additive Cardiodepression",
-            "enzyme": "AV Node Beta-1 & L-Type Ca²⁺ Blockade",
-            "risk": "Severe Bradycardia, Complete AV Block & Hypotension",
-            "moa": "Combined blockade of SA/AV nodal conduction suppresses cardiac contractility and heart rate dangerously.",
-            "recommendation": "Contraindicated in most clinical settings. Switch CCB to Amlodipine if needed."
-        },
-        "atorvastatin-clarithromycin": {
-            "severity": "HIGH",
-            "score": 82,
-            "type": "CYP3A4 Metabolic Inhibition",
-            "enzyme": "CYP3A4 Pathway",
-            "risk": "Rhabdomyolysis, Severe Myopathy & Acute Renal Failure",
-            "moa": "Clarithromycin potently inhibits CYP3A4, dramatically elevating plasma concentrations of Atorvastatin.",
-            "recommendation": "Temporarily withhold Atorvastatin during Clarithromycin therapy course."
-        }
-    }
-};
+/* ============================================================
+   PHARMACHECK AI — NEXT-GEN PHARMACOVIGILANCE ENGINE
+   B.Pharm Year 1 → Year 4 Drug Knowledgebase
+   Educational / Academic Demonstration
+   ============================================================ */
 
-// 2. INITIALIZATION
 document.addEventListener("DOMContentLoaded", () => {
-    const drug1Select = document.getElementById("drug1");
-    const drug2Select = document.getElementById("drug2");
-    const search1 = document.getElementById("search1");
-    const search2 = document.getElementById("search2");
 
-    const runBtn = document.getElementById("runAnalysis");
-    const clearBtn = document.getElementById("clearBtn");
+    /* ============================================================
+       DRUG DATABASE
+       B.Pharm-oriented common drugs
+       ============================================================ */
 
-    const placeholderView = document.getElementById("placeholderView");
-    const reportView = document.getElementById("reportView");
+    const pharmaDatabase = [
 
-    function renderDropdowns(filter1 = "", filter2 = "") {
-        drug1Select.innerHTML = "";
-        drug2Select.innerHTML = "";
+        // ========================================================
+        // B.PHARM YEAR 1 — BASIC / COMMONLY ENCOUNTERED DRUGS
+        // ========================================================
 
-        pharmaDatabase.drugs.forEach(d => {
-            if (d.name.toLowerCase().includes(filter1.toLowerCase())) {
-                const opt = document.createElement("option");
-                opt.value = d.id;
-                opt.textContent = `${d.name} (${d.class})`;
-                drug1Select.appendChild(opt);
-            }
-            if (d.name.toLowerCase().includes(filter2.toLowerCase())) {
-                const opt = document.createElement("option");
-                opt.value = d.id;
-                opt.textContent = `${d.name} (${d.class})`;
-                drug2Select.appendChild(opt);
-            }
-        });
-    }
+        {
+            id: "paracetamol",
+            name: "Paracetamol",
+            generic: "Paracetamol",
+            class: "Analgesic / Antipyretic",
+            category: "CNS",
+            year: "B.Pharm Year 1",
+            indications: ["Fever", "Pain"],
+            mechanism: "Central inhibition of prostaglandin synthesis",
+            route: "Oral / IV"
+        },
+        {
+            id: "aspirin",
+            name: "Aspirin",
+            generic: "Acetylsalicylic Acid",
+            class: "NSAID / Antiplatelet",
+            category: "CNS / Cardiovascular",
+            year: "B.Pharm Year 1",
+            indications: ["Pain", "Fever", "Antiplatelet therapy"],
+            mechanism: "Irreversible COX inhibition",
+            route: "Oral"
+        },
+        {
+            id: "ibuprofen",
+            name: "Ibuprofen",
+            generic: "Ibuprofen",
+            class: "NSAID",
+            category: "CNS",
+            year: "B.Pharm Year 1",
+            indications: ["Pain", "Inflammation", "Fever"],
+            mechanism: "Reversible COX inhibition",
+            route: "Oral"
+        },
+        {
+            id: "diclofenac",
+            name: "Diclofenac",
+            generic: "Diclofenac",
+            class: "NSAID",
+            category: "CNS",
+            year: "B.Pharm Year 1",
+            indications: ["Pain", "Inflammation"],
+            mechanism: "Cyclooxygenase inhibition",
+            route: "Oral / Topical"
+        },
+        {
+            id: "naproxen",
+            name: "Naproxen",
+            generic: "Naproxen",
+            class: "NSAID",
+            category: "CNS",
+            year: "B.Pharm Year 1",
+            indications: ["Pain", "Arthritis"],
+            mechanism: "COX inhibition",
+            route: "Oral"
+        },
+        {
+            id: "cetirizine",
+            name: "Cetirizine",
+            generic: "Cetirizine",
+            class: "Antihistamine",
+            category: "Respiratory",
+            year: "B.Pharm Year 1",
+            indications: ["Allergy", "Rhinitis", "Urticaria"],
+            mechanism: "Selective H1 receptor antagonist",
+            route: "Oral"
+        },
+        {
+            id: "loratadine",
+            name: "Loratadine",
+            generic: "Loratadine",
+            class: "Antihistamine",
+            category: "Respiratory",
+            year: "B.Pharm Year 1",
+            indications: ["Allergic rhinitis", "Urticaria"],
+            mechanism: "Peripheral H1 receptor antagonist",
+            route: "Oral"
+        },
+        {
+            id: "chlorpheniramine",
+            name: "Chlorpheniramine",
+            generic: "Chlorpheniramine",
+            class: "Antihistamine",
+            category: "Respiratory",
+            year: "B.Pharm Year 1",
+            indications: ["Allergy"],
+            mechanism: "H1 receptor blockade",
+            route: "Oral"
+        },
+        {
+            id: "omeprazole",
+            name: "Omeprazole",
+            generic: "Omeprazole",
+            class: "Proton Pump Inhibitor",
+            category: "Gastrointestinal",
+            year: "B.Pharm Year 1",
+            indications: ["GERD", "Peptic ulcer"],
+            mechanism: "Irreversible H+/K+ ATPase inhibition",
+            route: "Oral / IV"
+        },
+        {
+            id: "famotidine",
+            name: "Famotidine",
+            generic: "Famotidine",
+            class: "H2 Receptor Blocker",
+            category: "Gastrointestinal",
+            year: "B.Pharm Year 1",
+            indications: ["GERD", "Ulcer"],
+            mechanism: "Histamine H2 receptor blockade",
+            route: "Oral / IV"
+        },
 
-    renderDropdowns();
+        // ========================================================
+        // B.PHARM YEAR 2 — PHARMACOLOGY / PHARMACEUTICAL CHEMISTRY
+        // ========================================================
 
-    search1.addEventListener("input", (e) => renderDropdowns(e.target.value, search2.value));
-    search2.addEventListener("input", (e) => renderDropdowns(search1.value, e.target.value));
+        {
+            id: "warfarin",
+            name: "Warfarin",
+            generic: "Warfarin",
+            class: "Anticoagulant",
+            category: "Cardiovascular",
+            year: "B.Pharm Year 2",
+            indications: ["Thromboembolism prevention", "Atrial fibrillation"],
+            mechanism: "Vitamin K epoxide reductase inhibition",
+            route: "Oral"
+        },
+        {
+            id: "heparin",
+            name: "Heparin",
+            generic: "Unfractionated Heparin",
+            class: "Anticoagulant",
+            category: "Cardiovascular",
+            year: "B.Pharm Year 2",
+            indications: ["Thrombosis", "Anticoagulation"],
+            mechanism: "Enhances antithrombin activity",
+            route: "IV / SC"
+        },
+        {
+            id: "enoxaparin",
+            name: "Enoxaparin",
+            generic: "Enoxaparin",
+            class: "LMWH",
+            category: "Cardiovascular",
+            year: "B.Pharm Year 2",
+            indications: ["DVT prevention", "Thrombosis"],
+            mechanism: "Potentiates antithrombin-mediated factor Xa inhibition",
+            route: "SC"
+        },
+        {
+            id: "clopidogrel",
+            name: "Clopidogrel",
+            generic: "Clopidogrel",
+            class: "Antiplatelet",
+            category: "Cardiovascular",
+            year: "B.Pharm Year 2",
+            indications: ["ACS", "Stroke prevention"],
+            mechanism: "P2Y12 receptor inhibition",
+            route: "Oral"
+        },
+        {
+            id: "atorvastatin",
+            name: "Atorvastatin",
+            generic: "Atorvastatin",
+            class: "Statin",
+            category: "Cardiovascular",
+            year: "B.Pharm Year 2",
+            indications: ["Hyperlipidemia", "Cardiovascular risk reduction"],
+            mechanism: "HMG-CoA reductase inhibition",
+            route: "Oral"
+        },
+        {
+            id: "rosuvastatin",
+            name: "Rosuvastatin",
+            generic: "Rosuvastatin",
+            class: "Statin",
+            category: "Cardiovascular",
+            year: "B.Pharm Year 2",
+            indications: ["Hyperlipidemia"],
+            mechanism: "HMG-CoA reductase inhibition",
+            route: "Oral"
+        },
+        {
+            id: "amlodipine",
+            name: "Amlodipine",
+            generic: "Amlodipine",
+            class: "Calcium Channel Blocker",
+            category: "Cardiovascular",
+            year: "B.Pharm Year 2",
+            indications: ["Hypertension", "Angina"],
+            mechanism: "L-type calcium channel blockade",
+            route: "Oral"
+        },
+        {
+            id: "atenolol",
+            name: "Atenolol",
+            generic: "Atenolol",
+            class: "Beta Blocker",
+            category: "Cardiovascular",
+            year: "B.Pharm Year 2",
+            indications: ["Hypertension", "Angina"],
+            mechanism: "Selective beta-1 adrenergic receptor blockade",
+            route: "Oral"
+        },
+        {
+            id: "propranolol",
+            name: "Propranolol",
+            generic: "Propranolol",
+            class: "Beta Blocker",
+            category: "Cardiovascular",
+            year: "B.Pharm Year 2",
+            indications: ["Hypertension", "Arrhythmia", "Migraine"],
+            mechanism: "Non-selective beta adrenergic blockade",
+            route: "Oral / IV"
+        },
+        {
+            id: "metoprolol",
+            name: "Metoprolol",
+            generic: "Metoprolol",
+            class: "Beta Blocker",
+            category: "Cardiovascular",
+            year: "B.Pharm Year 2",
+            indications: ["Hypertension", "Heart failure"],
+            mechanism: "Beta-1 adrenergic blockade",
+            route: "Oral / IV"
+        },
+        {
+            id: "verapamil",
+            name: "Verapamil",
+            generic: "Verapamil",
+            class: "Calcium Channel Blocker",
+            category: "Cardiovascular",
+            year: "B.Pharm Year 2",
+            indications: ["Arrhythmia", "Angina", "Hypertension"],
+            mechanism: "L-type calcium channel blockade",
+            route: "Oral / IV"
+        },
+        {
+            id: "diltiazem",
+            name: "Diltiazem",
+            generic: "Diltiazem",
+            class: "Calcium Channel Blocker",
+            category: "Cardiovascular",
+            year: "B.Pharm Year 2",
+            indications: ["Angina", "Arrhythmia", "Hypertension"],
+            mechanism: "Calcium channel blockade",
+            route: "Oral / IV"
+        },
+        {
+            id: "enalapril",
+            name: "Enalapril",
+            generic: "Enalapril",
+            class: "ACE Inhibitor",
+            category: "Cardiovascular",
+            year: "B.Pharm Year 2",
+            indications: ["Hypertension", "Heart failure"],
+            mechanism: "ACE inhibition",
+            route: "Oral"
+        },
+        {
+            id: "losartan",
+            name: "Losartan",
+            generic: "Losartan",
+            class: "ARB",
+            category: "Cardiovascular",
+            year: "B.Pharm Year 2",
+            indications: ["Hypertension", "Heart failure"],
+            mechanism: "AT1 receptor blockade",
+            route: "Oral"
+        },
+        {
+            id: "furosemide",
+            name: "Furosemide",
+            generic: "Furosemide",
+            class: "Loop Diuretic",
+            category: "Cardiovascular / Renal",
+            year: "B.Pharm Year 2",
+            indications: ["Edema", "Hypertension"],
+            mechanism: "Na-K-2Cl cotransporter inhibition",
+            route: "Oral / IV"
+        },
+        {
+            id: "spironolactone",
+            name: "Spironolactone",
+            generic: "Spironolactone",
+            class: "Potassium-Sparing Diuretic",
+            category: "Cardiovascular / Renal",
+            year: "B.Pharm Year 2",
+            indications: ["Heart failure", "Edema"],
+            mechanism: "Aldosterone receptor antagonism",
+            route: "Oral"
+        },
 
-    drug1Select.addEventListener("change", () => {
-        const selectedText = drug1Select.options[drug1Select.selectedIndex]?.text.split(" (")[0];
-        if (selectedText) search1.value = selectedText;
-    });
+        // ========================================================
+        // ANTIMICROBIALS
+        // ========================================================
 
-    drug2Select.addEventListener("change", () => {
-        const selectedText = drug2Select.options[drug2Select.selectedIndex]?.text.split(" (")[0];
-        if (selectedText) search2.value = selectedText;
-    });
+        {
+            id: "amoxicillin",
+            name: "Amoxicillin",
+            generic: "Amoxicillin",
+            class: "Penicillin Antibiotic",
+            category: "Anti-infective",
+            year: "B.Pharm Year 2",
+            indications: ["Bacterial infections"],
+            mechanism: "Inhibits bacterial cell-wall synthesis",
+            route: "Oral / IV"
+        },
+        {
+            id: "ampicillin",
+            name: "Ampicillin",
+            generic: "Ampicillin",
+            class: "Penicillin Antibiotic",
+            category: "Anti-infective",
+            year: "B.Pharm Year 2",
+            indications: ["Bacterial infections"],
+            mechanism: "Inhibits bacterial cell-wall synthesis",
+            route: "Oral / IV"
+        },
+        {
+            id: "azithromycin",
+            name: "Azithromycin",
+            generic: "Azithromycin",
+            class: "Macrolide Antibiotic",
+            category: "Anti-infective",
+            year: "B.Pharm Year 2",
+            indications: ["Respiratory infections"],
+            mechanism: "50S ribosomal subunit inhibition",
+            route: "Oral / IV"
+        },
+        {
+            id: "clarithromycin",
+            name: "Clarithromycin",
+            generic: "Clarithromycin",
+            class: "Macrolide Antibiotic",
+            category: "Anti-infective",
+            year: "B.Pharm Year 2",
+            indications: ["Respiratory infections", "H. pylori"],
+            mechanism: "50S ribosomal subunit inhibition",
+            route: "Oral"
+        },
+        {
+            id: "ciprofloxacin",
+            name: "Ciprofloxacin",
+            generic: "Ciprofloxacin",
+            class: "Fluoroquinolone",
+            category: "Anti-infective",
+            year: "B.Pharm Year 2",
+            indications: ["Bacterial infections"],
+            mechanism: "DNA gyrase and topoisomerase IV inhibition",
+            route: "Oral / IV"
+        },
+        {
+            id: "levofloxacin",
+            name: "Levofloxacin",
+            generic: "Levofloxacin",
+            class: "Fluoroquinolone",
+            category: "Anti-infective",
+            year: "B.Pharm Year 2",
+            indications: ["Respiratory infections", "UTI"],
+            mechanism: "Topoisomerase inhibition",
+            route: "Oral / IV"
+        },
+        {
+            id: "doxycycline",
+            name: "Doxycycline",
+            generic: "Doxycycline",
+            class: "Tetracycline",
+            category: "Anti-infective",
+            year: "B.Pharm Year 2",
+            indications: ["Bacterial infections"],
+            mechanism: "30S ribosomal subunit inhibition",
+            route: "Oral / IV"
+        },
+        {
+            id: "metronidazole",
+            name: "Metronidazole",
+            generic: "Metronidazole",
+            class: "Nitroimidazole",
+            category: "Anti-infective",
+            year: "B.Pharm Year 2",
+            indications: ["Anaerobic infections", "Protozoal infections"],
+            mechanism: "Disrupts microbial DNA",
+            route: "Oral / IV"
+        },
+        {
+            id: "rifampicin",
+            name: "Rifampicin",
+            generic: "Rifampicin",
+            class: "Antitubercular",
+            category: "Anti-infective",
+            year: "B.Pharm Year 2",
+            indications: ["Tuberculosis"],
+            mechanism: "Bacterial RNA polymerase inhibition",
+            route: "Oral"
+        },
+        {
+            id: "isoniazid",
+            name: "Isoniazid",
+            generic: "Isoniazid",
+            class: "Antitubercular",
+            category: "Anti-infective",
+            year: "B.Pharm Year 2",
+            indications: ["Tuberculosis"],
+            mechanism: "Inhibits mycolic acid synthesis",
+            route: "Oral"
+        },
 
-    // 3. ANALYSIS EXECUTION
-    runBtn.addEventListener("click", executeAnalysis);
+        // ========================================================
+        // CNS / PSYCHIATRY
+        // ========================================================
 
-    clearBtn.addEventListener("click", () => {
-        placeholderView.style.display = "block";
-        reportView.style.display = "none";
-        search1.value = "";
-        search2.value = "";
-        renderDropdowns();
-    });
+        {
+            id: "diazepam",
+            name: "Diazepam",
+            generic: "Diazepam",
+            class: "Benzodiazepine",
+            category: "CNS",
+            year: "B.Pharm Year 2",
+            indications: ["Anxiety", "Seizures"],
+            mechanism: "Enhances GABA-A receptor activity",
+            route: "Oral / IV"
+        },
+        {
+            id: "alprazolam",
+            name: "Alprazolam",
+            generic: "Alprazolam",
+            class: "Benzodiazepine",
+            category: "CNS",
+            year: "B.Pharm Year 2",
+            indications: ["Anxiety disorders"],
+            mechanism: "Enhances GABA-A activity",
+            route: "Oral"
+        },
+        {
+            id: "clonazepam",
+            name: "Clonazepam",
+            generic: "Clonazepam",
+            class: "Benzodiazepine",
+            category: "CNS",
+            year: "B.Pharm Year 2",
+            indications: ["Seizures", "Panic disorder"],
+            mechanism: "Enhances GABA-A activity",
+            route: "Oral"
+        },
+        {
+            id: "fluoxetine",
+            name: "Fluoxetine",
+            generic: "Fluoxetine",
+            class: "SSRI",
+            category: "CNS",
+            year: "B.Pharm Year 2",
+            indications: ["Depression", "OCD"],
+            mechanism: "Selective serotonin reuptake inhibition",
+            route: "Oral"
+        },
+        {
+            id: "sertraline",
+            name: "Sertraline",
+            generic: "Sertraline",
+            class: "SSRI",
+            category: "CNS",
+            year: "B.Pharm Year 2",
+            indications: ["Depression", "Anxiety"],
+            mechanism: "Selective serotonin reuptake inhibition",
+            route: "Oral"
+        },
+        {
+            id: "phenytoin",
+            name: "Phenytoin",
+            generic: "Phenytoin",
+            class: "Antiepileptic",
+            category: "CNS",
+            year: "B.Pharm Year 2",
+            indications: ["Seizures"],
+            mechanism: "Voltage-gated sodium channel blockade",
+            route: "Oral / IV"
+        },
+        {
+            id: "valproate",
+            name: "Sodium Valproate",
+            generic: "Valproic Acid / Sodium Valproate",
+            class: "Antiepileptic",
+            category: "CNS",
+            year: "B.Pharm Year 2",
+            indications: ["Epilepsy", "Bipolar disorder"],
+            mechanism: "Multiple mechanisms including increased GABA activity",
+            route: "Oral / IV"
+        },
+        {
+            id: "carbamazepine",
+            name: "Carbamazepine",
+            generic: "Carbamazepine",
+            class: "Antiepileptic",
+            category: "CNS",
+            year: "B.Pharm Year 2",
+            indications: ["Epilepsy", "Trigeminal neuralgia"],
+            mechanism: "Voltage-gated sodium channel blockade",
+            route: "Oral"
+        },
 
-    function executeAnalysis() {
-        let d1 = drug1Select.value;
-        let d2 = drug2Select.value;
+        // ========================================================
+        // B.PHARM YEAR 3 — ENDOCRINE / GI / RESPIRATORY
+        // ========================================================
 
-        let name1 = search1.value.trim();
-        let name2 = search2.value.trim();
-
-        if (name1) {
-            const found = pharmaDatabase.drugs.find(d => d.name.toLowerCase() === name1.toLowerCase() || d.id === name1.toLowerCase());
-            d1 = found ? found.id : name1.toLowerCase();
-        }
-        if (name2) {
-            const found = pharmaDatabase.drugs.find(d => d.name.toLowerCase() === name2.toLowerCase() || d.id === name2.toLowerCase());
-            d2 = found ? found.id : name2.toLowerCase();
-        }
-
-        if (!d1 || !d2) {
-            alert("Please select or enter both Medicine A and Medicine B.");
-            return;
-        }
-
-        if (d1 === d2) {
-            alert("Please select two different medicines.");
-            return;
-        }
-
-        const key1 = `${d1}-${d2}`;
-        const key2 = `${d2}-${d1}`;
-        const data = pharmaDatabase.interactions[key1] || pharmaDatabase.interactions[key2];
-
-        // Clinical modifiers
-        const age = document.getElementById("patientAge").value;
-        const renal = document.getElementById("patientRenal").value;
-        const hepatic = document.getElementById("patientHepatic").value;
-
-        let riskMultiplier = 1.0;
-        let contextNotes = [];
-
-        if (age === "geriatric") { riskMultiplier += 0.15; contextNotes.push("Geriatric (+15%)"); }
-        if (renal === "impaired") { riskMultiplier += 0.10; contextNotes.push("Impaired Renal (+10%)"); }
-        if (hepatic === "impaired") { riskMultiplier += 0.15; contextNotes.push("Impaired Hepatic (+15%)"); }
-
-        placeholderView.style.display = "none";
-        reportView.style.display = "block";
-
-        const drugAObj = pharmaDatabase.drugs.find(d => d.id === d1);
-        const drugBObj = pharmaDatabase.drugs.find(d => d.id === d2);
-
-        const displayName1 = drugAObj ? drugAObj.name : name1;
-        const displayName2 = drugBObj ? drugBObj.name : name2;
-
-        document.getElementById("pairTitle").textContent = `${displayName1} + ${displayName2}`;
-        document.getElementById("reportCode").textContent = `REF-${Math.floor(10000 + Math.random() * 90000)}`;
-
-        if (data) {
-            let finalScore = Math.min(100, Math.round(data.score * riskMultiplier));
-            
-            document.getElementById("severityPill").textContent = `${data.severity} SEVERITY`;
-            document.getElementById("severityPill").className = `sev-tag sev-${data.severity}`;
-            document.getElementById("riskScoreVal").textContent = `${finalScore}%`;
-
-            const gaugeFill = document.getElementById("gaugeBarInner");
-            gaugeFill.style.width = `${finalScore}%`;
-            gaugeFill.style.backgroundColor = finalScore > 75 ? "#ef4444" : finalScore > 40 ? "#f59e0b" : "#10b981";
-
-            document.getElementById("interType").textContent = data.type;
-            document.getElementById("enzymePath").textContent = data.enzyme;
-            document.getElementById("primaryRiskDesc").textContent = data.risk;
-            document.getElementById("moaDesc").textContent = data.moa;
-            document.getElementById("actionDesc").textContent = data.recommendation;
-
-            document.getElementById("riskContextNote").textContent = contextNotes.length > 0 
-                ? `* Adjusted for: ${contextNotes.join(", ")}` 
-                : "* Standard adult baseline score.";
-        } else {
-            document.getElementById("severityPill").textContent = "LOW / SAFE";
-            document.getElementById("severityPill").className = "sev-tag sev-LOW";
-            document.getElementById("riskScoreVal").textContent = "15%";
-
-            const gaugeFill = document.getElementById("gaugeBarInner");
-            gaugeFill.style.width = "15%";
-            gaugeFill.style.backgroundColor = "#10b981";
-
-            document.getElementById("interType").textContent = "Minor / Custom Entry";
-            document.getElementById("enzymePath").textContent = "Standard Metabolic Route";
-            document.getElementById("primaryRiskDesc").textContent = `No critical interaction profile recorded in local JSON database for ${displayName1} & ${displayName2}.`;
-            document.getElementById("moaDesc").textContent = "The medications follow independent pharmacokinetics without direct toxic interaction.";
-            document.getElementById("actionDesc").textContent = "Standard clinical dosage is safe. Consult a medical practitioner if needed.";
-            document.getElementById("riskContextNote").textContent = "* Dynamic evaluation based on baseline parameters.";
-        }
-    }
-
-    // Preset Loader
-    window.triggerPreset = function(d1, d2) {
-        search1.value = "";
-        search2.value = "";
-        renderDropdowns();
-        
-        drug1Select.value = d1;
-        drug2Select.value = d2;
-
-        const drugAObj = pharmaDatabase.drugs.find(d => d.id === d1);
-        const drugBObj = pharmaDatabase.drugs.find(d => d.id === d2);
-        if (drugAObj) search1.value = drugAObj.name;
-        if (drugBObj) search2.value = drugBObj.name;
-
-        executeAnalysis();
-    };
-
-    // Matrix Cards Render
-    function renderMatrixCards(filter = "all") {
-        const grid = document.getElementById("matrixGrid");
-        if (!grid) return;
-        grid.innerHTML = "";
-
-        Object.keys(pharmaDatabase.interactions).forEach(key => {
-            const item = pharmaDatabase.interactions[key];
-            if (filter === "all" || item.severity === filter) {
-                const names = key.split("-").map(n => n.toUpperCase()).join(" + ");
-                const card = document.createElement("div");
-                card.className = "m-item-card";
-                card.innerHTML = `
-                    <span class="sev-tag sev-${item.severity}" style="float:right; font-size:9px;">${item.severity}</span>
-                    <h4>${names}</h4>
-                    <p style="margin-top:6px;"><strong>Type:</strong> ${item.type}</p>
-                    <p style="margin-top:4px;">${item.risk}</p>
-                `;
-                grid.appendChild(card);
-            }
-        });
-    }
-
-    renderMatrixCards();
-
-    window.filterMatrix = function(type, btn) {
-        document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-        renderMatrixCards(type);
-    };
-});
+        {
+            id: "metformin",
+            name: "Metformin",
+            generic: "Metformin",
+            class: "Biguanide",
+            category: "Antidiabetic",
+            year: "B.Pharm Year 3",
+            indications: ["Type 2 diabetes"],
+            mechanism: "Reduces hepatic glucose production and improves insulin sensitivity",
+            route: "Oral"
+        },
+        {
+            id: "glimepiride",
+            name: "Glimepiride",
+            generic: "Glimepiride",
+            class: "Sulfonylurea",
+            category: "Antidiabetic",
+            year: "B.Pharm Year 3",
+            indications: ["Type 2 diabetes"],
+            mechanism: "Stimulates pancreatic insulin release",
+            route: "Oral"
+        },
+        {
+            id: "insulin_regular",
+            name: "Regular Insulin",
+            generic: "Human Regular Insulin",
+            class: "Insulin",
+            category: "Antidiabetic",
+            year: "B.Pharm Year 3",
+            indications: ["Diabetes mellitus"],
+            mechanism: "Promotes glucose uptake and utilization",
+            route: "SC / IV"
+        },
+        {
+            id: "levothyroxine",
+            name: "Levothyroxine",
+            generic: "Levothyroxine",
+            class: "Thyroid Hormone",
+            category: "Endocrine",
+            year: "B.Pharm Year 3",
+            indications: ["Hypothyroidism"],
+            mechanism: "Synthetic T4 replacement",
+            route: "Oral / IV"
+        },
+        {
+            id: "prednisolone",
+            name: "Prednisolone",
+            generic: "Prednisolone",
+            class: "Corticosteroid",
+            category: "Endocrine / Anti-inflammatory",
+            year: "B.Pharm Year 3",
+            indications: ["Inflammatory disorders", "Autoimmune conditions"],
+            mechanism: "Glucocorticoid receptor activation",
+            route: "Oral"
+        },
+        {
+            id: "dexamethasone",
+            name: "Dexamethasone",
+            generic: "Dexamethasone",
+            class: "Corticosteroid",
+            catego
