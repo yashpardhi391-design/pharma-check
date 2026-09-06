@@ -1,482 +1,475 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>PharmaCheck AI | Pharmacovigilance Engine</title>
-    <meta name="description" content="PharmaCheck AI - educational drug interaction and pharmacovigilance analysis engine.">
+  <title>PharmaCheck AI</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- ================= HEADER ================= -->
-<header class="site-header">
-    <div class="container nav-wrap">
+  <header class="header">
+    <div class="logo">
+      <div class="logo-mark">✚</div>
+      <div>
+        <h2>PharmaCheck AI</h2>
+        <small>PHARMACOVIGILANCE ENGINE</small>
+      </div>
+    </div>
 
-        <a href="#home" class="brand">
-            <span class="brand-mark">+</span>
-            <span>
-                <strong>PharmaCheck</strong>
-                <small>PHARMACOVIGILANCE ENGINE</small>
-            </span>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#analyzer">Analyzer</a>
+      <a href="#alerts">Alerts</a>
+      <a href="#about">About</a>
+    </nav>
+
+    <div class="online">
+      <span></span> ENGINE ONLINE
+    </div>
+  </header>
+
+
+  <section class="hero" id="home">
+
+    <div class="hero-left">
+
+      <div class="tag">● CLINICAL SAFETY INTELLIGENCE</div>
+
+      <h1>
+        AI-POWERED<br>
+        <span>DRUG SAFETY</span>
+      </h1>
+
+      <p>
+        A structured pharmacovigilance engine for educational
+        drug-interaction screening and medication safety awareness.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="#analyzer" class="btn-primary">
+          START ANALYSIS →
         </a>
 
-        <nav class="nav">
-            <a href="#home">Home</a>
-            <a href="#analyzer">Alert</a>
-            <a href="#matrix">Matrix</a>
-            <a href="#about">About</a>
-        </nav>
+        <a href="#alerts" class="btn-secondary">
+          VIEW ALERTS
+        </a>
+      </div>
 
-        <div class="engine-online">
-            <span></span>
-            ENGINE ONLINE
+      <div class="stats">
+
+        <div>
+          <b>50+</b>
+          <span>DRUG PROFILES</span>
         </div>
+
+        <div>
+          <b>20+</b>
+          <span>INTERACTION RULES</span>
+        </div>
+
+        <div>
+          <b>AI</b>
+          <span>SAFETY ENGINE</span>
+        </div>
+
+      </div>
 
     </div>
-</header>
 
 
-<!-- ================= HERO ================= -->
-<main>
+    <div class="scanner">
 
-<section class="hero" id="home">
-    <div class="container hero-grid">
+      <div class="grid-bg"></div>
 
-        <div class="hero-copy">
+      <div class="scan-beam"></div>
 
-            <div class="eyebrow">
-                <span class="pulse"></span>
-                CLINICAL SAFETY / AI ASSISTED
-            </div>
+      <div class="circle">
+        +
+      </div>
 
-            <h1>
-                Drug interaction analysis,
-                <span>reimagined.</span>
-            </h1>
+      <div class="scanner-center">
+        <b>SCANNING</b>
+        <small>PHARMACOLOGICAL DATA</small>
+      </div>
 
-            <p class="hero-text">
-                PharmaCheck AI is an educational pharmacovigilance engine
-                designed to identify important drug-drug interaction signals,
-                explain the possible mechanism and provide a verification-oriented
-                safety assessment.
-            </p>
+      <div class="float-card card-one">
+        <small>01</small>
+        <b>DRUG INPUT</b>
+      </div>
 
-            <div class="hero-actions">
-                <a href="#analyzer" class="btn btn-primary">
-                    Open Safety Analyzer
-                    <span>→</span>
-                </a>
-
-                <a href="#matrix" class="btn btn-secondary">
-                    View Interaction Matrix
-                </a>
-            </div>
-
-            <div class="hero-stats">
-                <div>
-                    <strong>50+</strong>
-                    <span>Drug Profiles</span>
-                </div>
-
-                <div>
-                    <strong>25+</strong>
-                    <span>Interaction Rules</span>
-                </div>
-
-                <div>
-                    <strong>100%</strong>
-                    <span>Local Analysis</span>
-                </div>
-            </div>
-
-        </div>
-
-
-        <!-- SCANNER -->
-        <div class="scanner-wrap">
-
-            <div class="scanner-card">
-
-                <div class="scanner-top">
-                    <span>SAFETY ENGINE</span>
-                    <span class="scanner-live">
-                        <i></i> LIVE
-                    </span>
-                </div>
-
-                <div class="scanner-screen">
-
-                    <div class="scan-grid"></div>
-
-                    <div class="scan-center">
-                        <div class="ring ring-one"></div>
-                        <div class="ring ring-two"></div>
-                        <div class="crosshair"></div>
-                    </div>
-
-                    <div class="molecule molecule-one">
-                        <b></b><b></b><b></b>
-                    </div>
-
-                    <div class="molecule molecule-two">
-                        <b></b><b></b><b></b>
-                    </div>
-
-                    <div class="scan-beam"></div>
-
-                    <div class="scanner-label label-one">
-                        <small>INPUT</small>
-                        <strong>DRUG PAIR</strong>
-                    </div>
-
-                    <div class="scanner-label label-two">
-                        <small>ENGINE</small>
-                        <strong>ANALYZING</strong>
-                    </div>
-
-                    <div class="scanner-label label-three">
-                        <small>OUTPUT</small>
-                        <strong>RISK SIGNAL</strong>
-                    </div>
-
-                </div>
-
-                <div class="scanner-footer">
-                    <span>LOCAL KNOWLEDGE BASE</span>
-                    <span>v3.0.1</span>
-                </div>
-
-            </div>
-
-        </div>
+      <div class="float-card card-two">
+        <small>02</small>
+        <b>RISK ANALYSIS</b>
+      </div>
 
     </div>
-</section>
+
+  </section>
 
 
-<!-- ================= ANALYZER ================= -->
-<section class="section analyzer-section" id="analyzer">
+  <section class="analyzer-section" id="analyzer">
 
-    <div class="container">
+    <div class="section-title">
+      <div>
+        <small>01 / ANALYZER</small>
+        <h2>Drug Interaction Analyzer</h2>
+        <p>Select two medications and run the safety engine.</p>
+      </div>
 
-        <div class="section-heading">
+      <div class="local-engine">● LOCAL ENGINE</div>
+    </div>
+
+
+    <div class="analyzer">
+
+      <!-- CONTROLS -->
+
+      <div class="controls">
+
+        <div class="drug-box">
+
+          <label>PRIMARY DRUG</label>
+
+          <input
+            id="search1"
+            type="text"
+            placeholder="Search medication..."
+          >
+
+          <select id="drug1">
+            <option value="">Select primary drug</option>
+          </select>
+
+        </div>
+
+
+        <div class="plus">+</div>
+
+
+        <div class="drug-box">
+
+          <label>SECONDARY DRUG</label>
+
+          <input
+            id="search2"
+            type="text"
+            placeholder="Search medication..."
+          >
+
+          <select id="drug2">
+            <option value="">Select secondary drug</option>
+          </select>
+
+        </div>
+
+
+        <div class="patient">
+
+          <label>PATIENT FACTORS</label>
+
+          <div class="patient-grid">
+
+            <select id="patientAge">
+              <option value="adult">Adult</option>
+              <option value="geriatric">Geriatric</option>
+            </select>
+
+            <select id="patientRenal">
+              <option value="normal">Renal: Normal</option>
+              <option value="impaired">Renal: Impaired</option>
+            </select>
+
+            <select id="patientHepatic">
+              <option value="normal">Hepatic: Normal</option>
+              <option value="impaired">Hepatic: Impaired</option>
+            </select>
+
+          </div>
+
+        </div>
+
+
+        <div class="action-buttons">
+
+          <button
+            id="runAnalysis"
+            type="button"
+            onclick="runAnalysis()"
+          >
+            RUN SAFETY ANALYSIS →
+          </button>
+
+          <button
+            id="clearBtn"
+            type="button"
+            onclick="resetAnalysis()"
+            class="reset"
+          >
+            RESET
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- REPORT -->
+
+      <div class="report-area">
+
+        <div id="placeholderView" class="empty-report">
+
+          <div class="empty-icon">⌁</div>
+
+          <h3>READY FOR ANALYSIS</h3>
+
+          <p>
+            Select two drugs and click
+            <b>RUN SAFETY ANALYSIS</b>
+            to generate the report.
+          </p>
+
+          <small>● SYSTEM READY</small>
+
+        </div>
+
+
+        <div
+          id="reportView"
+          class="report"
+          style="display:none;"
+        >
+
+          <div class="report-top">
+
             <div>
-                <span class="section-kicker">01 / SAFETY ANALYZER</span>
-                <h2>Analyze a medication pair.</h2>
+              <small>SAFETY REPORT</small>
+              <h3 id="pairTitle">Drug Pair</h3>
             </div>
 
-            <p>
-                Select two medicines and generate an educational
-                pharmacovigilance assessment.
-            </p>
-        </div>
-
-
-        <!-- QUICK SCENARIOS -->
-        <div class="scenario-row">
-
-            <button class="scenario" data-preset="aspirin|warfarin">
-                <span class="scenario-icon high">!</span>
-                <span>
-                    <strong>Aspirin + Warfarin</strong>
-                    <small>Bleeding signal</small>
-                </span>
-            </button>
-
-            <button class="scenario" data-preset="atenolol|verapamil">
-                <span class="scenario-icon high">!</span>
-                <span>
-                    <strong>Atenolol + Verapamil</strong>
-                    <small>Cardiac signal</small>
-                </span>
-            </button>
-
-            <button class="scenario" data-preset="ciprofloxacin|antacid">
-                <span class="scenario-icon moderate">i</span>
-                <span>
-                    <strong>Ciprofloxacin + Antacid</strong>
-                    <small>Absorption signal</small>
-                </span>
-            </button>
-
-            <button class="scenario" data-preset="paracetamol|alcohol">
-                <span class="scenario-icon high">!</span>
-                <span>
-                    <strong>Paracetamol + Alcohol</strong>
-                    <small>Hepatic concern</small>
-                </span>
-            </button>
-
-        </div>
-
-
-        <div class="analyzer-layout">
-
-            <!-- INPUT CARD -->
-            <div class="input-card card">
-
-                <div class="card-head">
-                    <div>
-                        <span class="mini-label">PATIENT / MEDICATION INPUT</span>
-                        <h3>Safety profile</h3>
-                    </div>
-
-                    <span class="step-number">01</span>
-                </div>
-
-
-                <div class="form-grid">
-
-                    <div class="field full">
-                        <label for="search1">Primary medication</label>
-
-                        <div class="search-select">
-                            <span>⌕</span>
-                            <input
-                                type="text"
-                                id="search1"
-                                placeholder="Search primary drug..."
-                                autocomplete="off"
-                            >
-                        </div>
-
-                        <select id="drug1">
-                            <option value="">Select primary drug</option>
-                            <option value="amiodarone">Amiodarone</option>
-                            <option value="amlodipine">Amlodipine</option>
-                            <option value="amoxicillin">Amoxicillin</option>
-                            <option value="antacid">Antacid</option>
-                            <option value="aspirin">Aspirin</option>
-                            <option value="atenolol">Atenolol</option>
-                            <option value="atorvastatin">Atorvastatin</option>
-                            <option value="carbamazepine">Carbamazepine</option>
-                            <option value="ciprofloxacin">Ciprofloxacin</option>
-                            <option value="clarithromycin">Clarithromycin</option>
-                            <option value="dexamethasone">Dexamethasone</option>
-                            <option value="diazepam">Diazepam</option>
-                            <option value="diclofenac">Diclofenac</option>
-                            <option value="digoxin">Digoxin</option>
-                            <option value="doxycycline">Doxycycline</option>
-                            <option value="enalapril">Enalapril</option>
-                            <option value="fluconazole">Fluconazole</option>
-                            <option value="fluoxetine">Fluoxetine</option>
-                            <option value="furosemide">Furosemide</option>
-                            <option value="glimepiride">Glimepiride</option>
-                            <option value="glipizide">Glipizide</option>
-                            <option value="heparin">Heparin</option>
-                            <option value="ibuprofen">Ibuprofen</option>
-                            <option value="insulin">Insulin</option>
-                            <option value="ketoconazole">Ketoconazole</option>
-                            <option value="ketorolac">Ketorolac</option>
-                            <option value="levofloxacin">Levofloxacin</option>
-                            <option value="levothyroxine">Levothyroxine</option>
-                            <option value="linezolid">Linezolid</option>
-                            <option value="lisinopril">Lisinopril</option>
-                            <option value="lithium">Lithium</option>
-                            <option value="losartan">Losartan</option>
-                            <option value="metformin">Metformin</option>
-                            <option value="metoclopramide">Metoclopramide</option>
-                            <option value="metoprolol">Metoprolol</option>
-                            <option value="metronidazole">Metronidazole</option>
-                            <option value="montelukast">Montelukast</option>
-                            <option value="naproxen">Naproxen</option>
-                            <option value="omeprazole">Omeprazole</option>
-                            <option value="ondansetron">Ondansetron</option>
-                            <option value="pantoprazole">Pantoprazole</option>
-                            <option value="paracetamol">Paracetamol</option>
-                            <option value="phenytoin">Phenytoin</option>
-                            <option value="prednisolone">Prednisolone</option>
-                            <option value="propranolol">Propranolol</option>
-                            <option value="rifampicin">Rifampicin</option>
-                            <option value="rosuvastatin">Rosuvastatin</option>
-                            <option value="salbutamol">Salbutamol</option>
-                            <option value="sertraline">Sertraline</option>
-                            <option value="sildenafil">Sildenafil</option>
-                            <option value="simvastatin">Simvastatin</option>
-                            <option value="spironolactone">Spironolactone</option>
-                            <option value="theophylline">Theophylline</option>
-                            <option value="warfarin">Warfarin</option>
-                            <option value="alcohol">Alcohol</option>
-                            <option value="methotrexate">Methotrexate</option>
-                        </select>
-                    </div>
-
-
-                    <div class="swap-line">
-                        <span></span>
-                        <button type="button" id="swapBtn" title="Swap medications">⇄</button>
-                        <span></span>
-                    </div>
-
-
-                    <div class="field full">
-                        <label for="search2">Secondary medication</label>
-
-                        <div class="search-select">
-                            <span>⌕</span>
-                            <input
-                                type="text"
-                                id="search2"
-                                placeholder="Search secondary drug..."
-                                autocomplete="off"
-                            >
-                        </div>
-
-                        <select id="drug2">
-                            <option value="">Select secondary drug</option>
-                            <option value="amiodarone">Amiodarone</option>
-                            <option value="amlodipine">Amlodipine</option>
-                            <option value="amoxicillin">Amoxicillin</option>
-                            <option value="antacid">Antacid</option>
-                            <option value="aspirin">Aspirin</option>
-                            <option value="atenolol">Atenolol</option>
-                            <option value="atorvastatin">Atorvastatin</option>
-                            <option value="carbamazepine">Carbamazepine</option>
-                            <option value="ciprofloxacin">Ciprofloxacin</option>
-                            <option value="clarithromycin">Clarithromycin</option>
-                            <option value="dexamethasone">Dexamethasone</option>
-                            <option value="diazepam">Diazepam</option>
-                            <option value="diclofenac">Diclofenac</option>
-                            <option value="digoxin">Digoxin</option>
-                            <option value="doxycycline">Doxycycline</option>
-                            <option value="enalapril">Enalapril</option>
-                            <option value="fluconazole">Fluconazole</option>
-                            <option value="fluoxetine">Fluoxetine</option>
-                            <option value="furosemide">Furosemide</option>
-                            <option value="glimepiride">Glimepiride</option>
-                            <option value="glipizide">Glipizide</option>
-                            <option value="heparin">Heparin</option>
-                            <option value="ibuprofen">Ibuprofen</option>
-                            <option value="insulin">Insulin</option>
-                            <option value="ketoconazole">Ketoconazole</option>
-                            <option value="ketorolac">Ketorolac</option>
-                            <option value="levofloxacin">Levofloxacin</option>
-                            <option value="levothyroxine">Levothyroxine</option>
-                            <option value="linezolid">Linezolid</option>
-                            <option value="lisinopril">Lisinopril</option>
-                            <option value="lithium">Lithium</option>
-                            <option value="losartan">Losartan</option>
-                            <option value="metformin">Metformin</option>
-                            <option value="metoclopramide">Metoclopramide</option>
-                            <option value="metoprolol">Metoprolol</option>
-                            <option value="metronidazole">Metronidazole</option>
-                            <option value="montelukast">Montelukast</option>
-                            <option value="naproxen">Naproxen</option>
-                            <option value="omeprazole">Omeprazole</option>
-                            <option value="ondansetron">Ondansetron</option>
-                            <option value="pantoprazole">Pantoprazole</option>
-                            <option value="paracetamol">Paracetamol</option>
-                            <option value="phenytoin">Phenytoin</option>
-                            <option value="prednisolone">Prednisolone</option>
-                            <option value="propranolol">Propranolol</option>
-                            <option value="rifampicin">Rifampicin</option>
-                            <option value="rosuvastatin">Rosuvastatin</option>
-                            <option value="salbutamol">Salbutamol</option>
-                            <option value="sertraline">Sertraline</option>
-                            <option value="sildenafil">Sildenafil</option>
-                            <option value="simvastatin">Simvastatin</option>
-                            <option value="spironolactone">Spironolactone</option>
-                            <option value="theophylline">Theophylline</option>
-                            <option value="warfarin">Warfarin</option>
-                            <option value="alcohol">Alcohol</option>
-                            <option value="methotrexate">Methotrexate</option>
-                        </select>
-                    </div>
-
-                </div>
-
-
-                <div class="patient-section">
-
-                    <div class="patient-title">
-                        <span class="mini-label">PATIENT CONTEXT</span>
-                        <span>Optional modifiers</span>
-                    </div>
-
-                    <div class="patient-grid">
-
-                        <label>
-                            Age
-                            <input id="patientAge" type="number" min="1" max="120" placeholder="e.g. 65">
-                        </label>
-
-                        <label>
-                            Renal status
-                            <select id="patientRenal">
-                                <option value="normal">Normal</option>
-                                <option value="impaired">Impaired</option>
-                            </select>
-                        </label>
-
-                        <label>
-                            Hepatic status
-                            <select id="patientHepatic">
-                                <option value="normal">Normal</option>
-                                <option value="impaired">Impaired</option>
-                            </select>
-                        </label>
-
-                    </div>
-
-                </div>
-
-
-                <div class="form-actions">
-                    <button id="runAnalysis" class="btn btn-primary large">
-                        Run Safety Analysis
-                        <span>→</span>
-                    </button>
-
-                    <button id="clearBtn" class="btn btn-ghost">
-                        Reset
-                    </button>
-                </div>
-
+            <div id="severityPill" class="severity">
+              VERIFY
             </div>
 
-
-            <!-- REPORT -->
-            <div class="report-card card">
-
-                <div id="placeholderView" class="placeholder">
-
-                    <div class="placeholder-icon">+</div>
-
-                    <span class="mini-label">ANALYSIS OUTPUT</span>
-
-                    <h3>Awaiting medication pair</h3>
-
-                    <p>
-                        Select two medications from the library
-                        to generate a safety assessment.
-                    </p>
-
-                    <div class="placeholder-line"></div>
-
-                    <small>
-                        Unknown combinations are returned as
-                        <strong>VERIFY</strong>, not SAFE.
-                    </small>
-
-                </div>
+          </div>
 
 
-                <div id="reportView" class="report-view hidden">
+          <div class="score">
 
-                    <div class="report-top">
-                        <div>
-                            <span class="mini-label">SAFETY REPORT</span>
-                            <h3 id="pairTitle">Drug Pair</h3>
-                        </div>
+            <div>
+              <small>RISK SCORE</small>
+              <strong id="riskScore">—</strong>
+            </div>
 
-                        <span id="severityPill" class="severity-pill">
-                            VERIFY
-                        <
+            <div class="meter">
+              <div id="riskMeter"></div>
+            </div>
+
+          </div>
+
+
+          <div class="report-details">
+
+            <div>
+              <small>INTERACTION TYPE</small>
+              <b id="interactionType">—</b>
+            </div>
+
+            <div>
+              <small>PATHWAY</small>
+              <b id="pathway">—</b>
+            </div>
+
+          </div>
+
+
+          <div class="text-block">
+            <small>RISK ASSESSMENT</small>
+            <p id="riskText">—</p>
+          </div>
+
+
+          <div class="text-block">
+            <small>MECHANISM</small>
+            <p id="moaText">—</p>
+          </div>
+
+
+          <div class="recommendation">
+
+            <small>RECOMMENDATION</small>
+
+            <p id="recommendationText">—</p>
+
+          </div>
+
+
+          <div class="report-id">
+            REPORT ID: <span id="reportCode">—</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="quick-section">
+
+    <div class="section-title">
+      <div>
+        <small>02 / QUICK TEST</small>
+        <h2>Clinical Scenarios</h2>
+        <p>Test the engine with predefined interaction cases.</p>
+      </div>
+    </div>
+
+
+    <div class="scenario-grid">
+
+      <button data-preset="aspirin|warfarin">
+        <b>Aspirin + Warfarin</b>
+        <span>Bleeding risk</span>
+      </button>
+
+      <button data-preset="paracetamol|alcohol">
+        <b>Paracetamol + Alcohol</b>
+        <span>Hepatic safety</span>
+      </button>
+
+      <button data-preset="atenolol|verapamil">
+        <b>Atenolol + Verapamil</b>
+        <span>Cardiovascular</span>
+      </button>
+
+      <button data-preset="ibuprofen|enalapril">
+        <b>Ibuprofen + Enalapril</b>
+        <span>Renal / BP</span>
+      </button>
+
+      <button data-preset="lithium|ibuprofen">
+        <b>Lithium + Ibuprofen</b>
+        <span>Lithium toxicity</span>
+      </button>
+
+      <button data-preset="diazepam|alcohol">
+        <b>Diazepam + Alcohol</b>
+        <span>CNS depression</span>
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <section class="alerts" id="alerts">
+
+    <div class="section-title">
+
+      <div>
+        <small>03 / ALERT MATRIX</small>
+        <h2>Interaction Matrix</h2>
+        <p>Known interaction rules available in the local engine.</p>
+      </div>
+
+      <div class="filters">
+
+        <button class="filter active" data-filter="ALL">
+          ALL
+        </button>
+
+        <button class="filter" data-filter="HIGH">
+          HIGH
+        </button>
+
+        <button class="filter" data-filter="MODERATE">
+          MODERATE
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div id="matrixGrid" class="matrix"></div>
+
+  </section>
+
+
+  <section class="about" id="about">
+
+    <div>
+      <small>04 / ABOUT</small>
+
+      <h2>
+        Built for safer<br>
+        <span>medication awareness.</span>
+      </h2>
+    </div>
+
+    <div>
+
+      <p>
+        PharmaCheck AI is an educational pharmacovigilance
+        prototype designed to demonstrate structured
+        drug-interaction screening.
+      </p>
+
+      <p>
+        The local engine uses predefined interaction rules
+        and transparent reporting rather than presenting
+        unknown combinations as automatically safe.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <section class="disclaimer">
+
+    <div class="warning">!</div>
+
+    <div>
+      <b>EDUCATIONAL USE ONLY</b>
+
+      <p>
+        This prototype does not replace professional clinical
+        judgment, pharmacist review, prescribing information,
+        or authoritative drug-interaction references.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <footer>
+
+    <div>
+      <b>PharmaCheck AI</b>
+      <span>Next-Gen Pharmacovigilance Engine</span>
+    </div>
+
+    <div class="team">
+      <span>LEAD DEVELOPER</span>
+      <b>Yash Pardhi</b>
+
+      <span>MEDICAL VISION</span>
+      <b>Mohamad Muaaj Mansuri</b>
+    </div>
+
+  </footer>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>
