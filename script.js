@@ -1,6 +1,7 @@
 /* =========================================================
    PHARMACHECK AI
-   Pharmacovigilance Interaction Engine
+   LOCAL PHARMACOVIGILANCE ENGINE
+   No API / No external dependency
 ========================================================= */
 
 "use strict";
@@ -12,178 +13,40 @@
 
 const DRUGS = {
 
+    amiodarone: {
+        name: "Amiodarone",
+        generic: "Amiodarone",
+        className: "Antiarrhythmic"
+    },
+
+    amlodipine: {
+        name: "Amlodipine",
+        generic: "Amlodipine",
+        className: "Calcium-channel blocker"
+    },
+
+    amoxicillin: {
+        name: "Amoxicillin",
+        generic: "Amoxicillin",
+        className: "Penicillin antibiotic"
+    },
+
+    antacid: {
+        name: "Antacid",
+        generic: "Aluminium / magnesium antacid",
+        className: "Gastrointestinal"
+    },
+
     aspirin: {
         name: "Aspirin",
         generic: "Acetylsalicylic acid",
         className: "NSAID / Antiplatelet"
     },
 
-    paracetamol: {
-        name: "Paracetamol",
-        generic: "Acetaminophen",
-        className: "Analgesic / Antipyretic"
-    },
-
-    ibuprofen: {
-        name: "Ibuprofen",
-        generic: "Ibuprofen",
-        className: "NSAID"
-    },
-
-    diclofenac: {
-        name: "Diclofenac",
-        generic: "Diclofenac",
-        className: "NSAID"
-    },
-
-    naproxen: {
-        name: "Naproxen",
-        generic: "Naproxen",
-        className: "NSAID"
-    },
-
-    ketorolac: {
-        name: "Ketorolac",
-        generic: "Ketorolac",
-        className: "NSAID"
-    },
-
-    amoxicillin: {
-        name: "Amoxicillin",
-        generic: "Amoxicillin",
-        className: "Penicillin Antibiotic"
-    },
-
-    azithromycin: {
-        name: "Azithromycin",
-        generic: "Azithromycin",
-        className: "Macrolide Antibiotic"
-    },
-
-    clarithromycin: {
-        name: "Clarithromycin",
-        generic: "Clarithromycin",
-        className: "Macrolide Antibiotic"
-    },
-
-    ciprofloxacin: {
-        name: "Ciprofloxacin",
-        generic: "Ciprofloxacin",
-        className: "Fluoroquinolone"
-    },
-
-    levofloxacin: {
-        name: "Levofloxacin",
-        generic: "Levofloxacin",
-        className: "Fluoroquinolone"
-    },
-
-    doxycycline: {
-        name: "Doxycycline",
-        generic: "Doxycycline",
-        className: "Tetracycline Antibiotic"
-    },
-
-    metronidazole: {
-        name: "Metronidazole",
-        generic: "Metronidazole",
-        className: "Nitroimidazole Antibiotic"
-    },
-
-    rifampicin: {
-        name: "Rifampicin",
-        generic: "Rifampin",
-        className: "Antitubercular"
-    },
-
-    linezolid: {
-        name: "Linezolid",
-        generic: "Linezolid",
-        className: "Oxazolidinone Antibiotic"
-    },
-
-    warfarin: {
-        name: "Warfarin",
-        generic: "Warfarin",
-        className: "Anticoagulant"
-    },
-
-    heparin: {
-        name: "Heparin",
-        generic: "Unfractionated Heparin",
-        className: "Anticoagulant"
-    },
-
     atenolol: {
         name: "Atenolol",
         generic: "Atenolol",
-        className: "Beta Blocker"
-    },
-
-    metoprolol: {
-        name: "Metoprolol",
-        generic: "Metoprolol",
-        className: "Beta Blocker"
-    },
-
-    propranolol: {
-        name: "Propranolol",
-        generic: "Propranolol",
-        className: "Beta Blocker"
-    },
-
-    verapamil: {
-        name: "Verapamil",
-        generic: "Verapamil",
-        className: "Calcium Channel Blocker"
-    },
-
-    amlodipine: {
-        name: "Amlodipine",
-        generic: "Amlodipine",
-        className: "Calcium Channel Blocker"
-    },
-
-    enalapril: {
-        name: "Enalapril",
-        generic: "Enalapril",
-        className: "ACE Inhibitor"
-    },
-
-    lisinopril: {
-        name: "Lisinopril",
-        generic: "Lisinopril",
-        className: "ACE Inhibitor"
-    },
-
-    losartan: {
-        name: "Losartan",
-        generic: "Losartan",
-        className: "ARB"
-    },
-
-    furosemide: {
-        name: "Furosemide",
-        generic: "Furosemide",
-        className: "Loop Diuretic"
-    },
-
-    spironolactone: {
-        name: "Spironolactone",
-        generic: "Spironolactone",
-        className: "Potassium-Sparing Diuretic"
-    },
-
-    digoxin: {
-        name: "Digoxin",
-        generic: "Digoxin",
-        className: "Cardiac Glycoside"
-    },
-
-    amiodarone: {
-        name: "Amiodarone",
-        generic: "Amiodarone",
-        className: "Antiarrhythmic"
+        className: "Beta blocker"
     },
 
     atorvastatin: {
@@ -192,22 +55,76 @@ const DRUGS = {
         className: "Statin"
     },
 
-    simvastatin: {
-        name: "Simvastatin",
-        generic: "Simvastatin",
-        className: "Statin"
+    carbamazepine: {
+        name: "Carbamazepine",
+        generic: "Carbamazepine",
+        className: "Antiepileptic"
     },
 
-    rosuvastatin: {
-        name: "Rosuvastatin",
-        generic: "Rosuvastatin",
-        className: "Statin"
+    ciprofloxacin: {
+        name: "Ciprofloxacin",
+        generic: "Ciprofloxacin",
+        className: "Fluoroquinolone antibiotic"
     },
 
-    metformin: {
-        name: "Metformin",
-        generic: "Metformin",
-        className: "Biguanide"
+    clarithromycin: {
+        name: "Clarithromycin",
+        generic: "Clarithromycin",
+        className: "Macrolide antibiotic"
+    },
+
+    dexamethasone: {
+        name: "Dexamethasone",
+        generic: "Dexamethasone",
+        className: "Corticosteroid"
+    },
+
+    diazepam: {
+        name: "Diazepam",
+        generic: "Diazepam",
+        className: "Benzodiazepine"
+    },
+
+    diclofenac: {
+        name: "Diclofenac",
+        generic: "Diclofenac",
+        className: "NSAID"
+    },
+
+    digoxin: {
+        name: "Digoxin",
+        generic: "Digoxin",
+        className: "Cardiac glycoside"
+    },
+
+    doxycycline: {
+        name: "Doxycycline",
+        generic: "Doxycycline",
+        className: "Tetracycline antibiotic"
+    },
+
+    enalapril: {
+        name: "Enalapril",
+        generic: "Enalapril",
+        className: "ACE inhibitor"
+    },
+
+    fluconazole: {
+        name: "Fluconazole",
+        generic: "Fluconazole",
+        className: "Azole antifungal"
+    },
+
+    fluoxetine: {
+        name: "Fluoxetine",
+        generic: "Fluoxetine",
+        className: "SSRI antidepressant"
+    },
+
+    furosemide: {
+        name: "Furosemide",
+        generic: "Furosemide",
+        className: "Loop diuretic"
     },
 
     glimepiride: {
@@ -222,28 +139,130 @@ const DRUGS = {
         className: "Sulfonylurea"
     },
 
+    heparin: {
+        name: "Heparin",
+        generic: "Unfractionated heparin",
+        className: "Anticoagulant"
+    },
+
+    ibuprofen: {
+        name: "Ibuprofen",
+        generic: "Ibuprofen",
+        className: "NSAID"
+    },
+
     insulin: {
         name: "Insulin",
-        generic: "Human / Analog Insulin",
+        generic: "Insulin",
         className: "Antidiabetic"
     },
 
-    fluoxetine: {
-        name: "Fluoxetine",
-        generic: "Fluoxetine",
-        className: "SSRI"
+    ketoconazole: {
+        name: "Ketoconazole",
+        generic: "Ketoconazole",
+        className: "Azole antifungal"
     },
 
-    sertraline: {
-        name: "Sertraline",
-        generic: "Sertraline",
-        className: "SSRI"
+    ketorolac: {
+        name: "Ketorolac",
+        generic: "Ketorolac",
+        className: "NSAID"
     },
 
-    diazepam: {
-        name: "Diazepam",
-        generic: "Diazepam",
-        className: "Benzodiazepine"
+    levofloxacin: {
+        name: "Levofloxacin",
+        generic: "Levofloxacin",
+        className: "Fluoroquinolone antibiotic"
+    },
+
+    levothyroxine: {
+        name: "Levothyroxine",
+        generic: "Levothyroxine",
+        className: "Thyroid hormone"
+    },
+
+    linezolid: {
+        name: "Linezolid",
+        generic: "Linezolid",
+        className: "Oxazolidinone antibiotic"
+    },
+
+    lisinopril: {
+        name: "Lisinopril",
+        generic: "Lisinopril",
+        className: "ACE inhibitor"
+    },
+
+    lithium: {
+        name: "Lithium",
+        generic: "Lithium",
+        className: "Mood stabilizer"
+    },
+
+    losartan: {
+        name: "Losartan",
+        generic: "Losartan",
+        className: "ARB"
+    },
+
+    metformin: {
+        name: "Metformin",
+        generic: "Metformin",
+        className: "Biguanide"
+    },
+
+    metoclopramide: {
+        name: "Metoclopramide",
+        generic: "Metoclopramide",
+        className: "Antiemetic / Prokinetic"
+    },
+
+    metoprolol: {
+        name: "Metoprolol",
+        generic: "Metoprolol",
+        className: "Beta blocker"
+    },
+
+    metronidazole: {
+        name: "Metronidazole",
+        generic: "Metronidazole",
+        className: "Nitroimidazole antibiotic"
+    },
+
+    montelukast: {
+        name: "Montelukast",
+        generic: "Montelukast",
+        className: "Leukotriene receptor antagonist"
+    },
+
+    naproxen: {
+        name: "Naproxen",
+        generic: "Naproxen",
+        className: "NSAID"
+    },
+
+    omeprazole: {
+        name: "Omeprazole",
+        generic: "Omeprazole",
+        className: "Proton-pump inhibitor"
+    },
+
+    ondansetron: {
+        name: "Ondansetron",
+        generic: "Ondansetron",
+        className: "5-HT3 antagonist"
+    },
+
+    pantoprazole: {
+        name: "Pantoprazole",
+        generic: "Pantoprazole",
+        className: "Proton-pump inhibitor"
+    },
+
+    paracetamol: {
+        name: "Paracetamol",
+        generic: "Acetaminophen",
+        className: "Analgesic / Antipyretic"
     },
 
     phenytoin: {
@@ -252,52 +271,58 @@ const DRUGS = {
         className: "Antiepileptic"
     },
 
-    carbamazepine: {
-        name: "Carbamazepine",
-        generic: "Carbamazepine",
-        className: "Antiepileptic"
+    prednisolone: {
+        name: "Prednisolone",
+        generic: "Prednisolone",
+        className: "Corticosteroid"
     },
 
-    lithium: {
-        name: "Lithium",
-        generic: "Lithium",
-        className: "Mood Stabilizer"
+    propranolol: {
+        name: "Propranolol",
+        generic: "Propranolol",
+        className: "Beta blocker"
     },
 
-    omeprazole: {
-        name: "Omeprazole",
-        generic: "Omeprazole",
-        className: "Proton Pump Inhibitor"
+    rifampicin: {
+        name: "Rifampicin",
+        generic: "Rifampin",
+        className: "Rifamycin antibiotic"
     },
 
-    pantoprazole: {
-        name: "Pantoprazole",
-        generic: "Pantoprazole",
-        className: "Proton Pump Inhibitor"
-    },
-
-    antacid: {
-        name: "Antacid",
-        generic: "Aluminium / Magnesium Antacid",
-        className: "Antacid"
-    },
-
-    ondansetron: {
-        name: "Ondansetron",
-        generic: "Ondansetron",
-        className: "Antiemetic"
-    },
-
-    metoclopramide: {
-        name: "Metoclopramide",
-        generic: "Metoclopramide",
-        className: "Prokinetic / Antiemetic"
+    rosuvastatin: {
+        name: "Rosuvastatin",
+        generic: "Rosuvastatin",
+        className: "Statin"
     },
 
     salbutamol: {
         name: "Salbutamol",
-        generic: "Albuterol",
-        className: "Beta-2 Agonist"
+        generic: "Albuterol / Salbutamol",
+        className: "Beta-2 agonist"
+    },
+
+    sertraline: {
+        name: "Sertraline",
+        generic: "Sertraline",
+        className: "SSRI antidepressant"
+    },
+
+    sildenafil: {
+        name: "Sildenafil",
+        generic: "Sildenafil",
+        className: "PDE-5 inhibitor"
+    },
+
+    simvastatin: {
+        name: "Simvastatin",
+        generic: "Simvastatin",
+        className: "Statin"
+    },
+
+    spironolactone: {
+        name: "Spironolactone",
+        generic: "Spironolactone",
+        className: "Potassium-sparing diuretic"
     },
 
     theophylline: {
@@ -306,60 +331,23 @@ const DRUGS = {
         className: "Methylxanthine"
     },
 
-    montelukast: {
-        name: "Montelukast",
-        generic: "Montelukast",
-        className: "Leukotriene Receptor Antagonist"
-    },
-
-    levothyroxine: {
-        name: "Levothyroxine",
-        generic: "Levothyroxine",
-        className: "Thyroid Hormone"
-    },
-
-    prednisolone: {
-        name: "Prednisolone",
-        generic: "Prednisolone",
-        className: "Corticosteroid"
-    },
-
-    dexamethasone: {
-        name: "Dexamethasone",
-        generic: "Dexamethasone",
-        className: "Corticosteroid"
-    },
-
-    fluconazole: {
-        name: "Fluconazole",
-        generic: "Fluconazole",
-        className: "Azole Antifungal"
-    },
-
-    ketoconazole: {
-        name: "Ketoconazole",
-        generic: "Ketoconazole",
-        className: "Azole Antifungal"
+    warfarin: {
+        name: "Warfarin",
+        generic: "Warfarin",
+        className: "Anticoagulant"
     },
 
     alcohol: {
         name: "Alcohol",
         generic: "Ethanol",
-        className: "CNS Depressant / Substance"
-    },
-
-    sildenafil: {
-        name: "Sildenafil",
-        generic: "Sildenafil",
-        className: "PDE-5 Inhibitor"
+        className: "CNS depressant / Substance"
     },
 
     methotrexate: {
         name: "Methotrexate",
         generic: "Methotrexate",
-        className: "Antimetabolite"
+        className: "Antimetabolite / Immunosuppressant"
     }
-
 };
 
 
@@ -375,10 +363,10 @@ const INTERACTIONS = [
         severity: "HIGH",
         score: 88,
         type: "Pharmacodynamic",
-        pathway: "Hemostasis / Platelet Function",
-        risk: "Concurrent use can increase bleeding concern because antiplatelet and anticoagulant effects may be additive.",
-        moa: "Aspirin inhibits platelet aggregation while warfarin reduces synthesis of vitamin-K-dependent clotting factors.",
-        recommendation: "Clinical context and bleeding risk should be reviewed. Verify the indication and monitor appropriately."
+        pathway: "Bleeding risk",
+        risk: "Concurrent antiplatelet and anticoagulant effects can increase bleeding risk.",
+        moa: "Aspirin inhibits platelet aggregation while warfarin reduces vitamin-K-dependent coagulation factor activity.",
+        recommendation: "Verify indication, patient-specific bleeding risk and monitoring requirements with an authoritative clinical reference."
     },
 
     {
@@ -387,10 +375,10 @@ const INTERACTIONS = [
         severity: "HIGH",
         score: 85,
         type: "Toxicodynamic",
-        pathway: "Hepatic Metabolism",
-        risk: "Repeated or excessive exposure may increase concern for liver toxicity, particularly with additional risk factors.",
-        moa: "Paracetamol is metabolized hepatically. Alcohol exposure can modify hepatic metabolic conditions and toxicity risk.",
-        recommendation: "Review total exposure and patient risk factors. Avoid assuming safety solely from standard single-dose use."
+        pathway: "Hepatic safety",
+        risk: "Repeated or excessive exposure may increase concern for hepatic toxicity.",
+        moa: "Alcohol use can alter hepatic metabolism and may increase vulnerability to acetaminophen-related liver injury in certain settings.",
+        recommendation: "Verify total acetaminophen exposure and alcohol-use context with a qualified clinician or pharmacist."
     },
 
     {
@@ -399,10 +387,10 @@ const INTERACTIONS = [
         severity: "MODERATE",
         score: 58,
         type: "Pharmacokinetic",
-        pathway: "GI Absorption / Chelation",
-        risk: "Antacids containing polyvalent cations can reduce absorption of ciprofloxacin.",
-        moa: "Ciprofloxacin can form complexes with aluminium or magnesium ions, reducing gastrointestinal absorption.",
-        recommendation: "Administration timing should be checked against an authoritative product reference."
+        pathway: "Absorption",
+        risk: "Antacid minerals can reduce absorption of ciprofloxacin when taken too closely together.",
+        moa: "Chelation with polyvalent cations can decrease fluoroquinolone gastrointestinal absorption.",
+        recommendation: "Check product-specific administration spacing instructions before use."
     },
 
     {
@@ -411,10 +399,10 @@ const INTERACTIONS = [
         severity: "HIGH",
         score: 92,
         type: "Pharmacodynamic",
-        pathway: "Cardiac Conduction",
-        risk: "Combined effects may increase concern for bradycardia, hypotension or impaired AV conduction.",
-        moa: "Atenolol reduces sympathetic cardiac stimulation while verapamil slows AV-node conduction.",
-        recommendation: "Combination requires careful clinical assessment and monitoring when used together."
+        pathway: "Cardiac conduction",
+        risk: "Combined negative chronotropic and conduction effects may increase risk of bradycardia or conduction abnormalities.",
+        moa: "Beta blockade combined with calcium-channel blockade can produce additive effects on heart rate and AV-node conduction.",
+        recommendation: "Clinical verification and monitoring are important, particularly in patients with conduction or rate-control concerns."
     },
 
     {
@@ -423,10 +411,10 @@ const INTERACTIONS = [
         severity: "HIGH",
         score: 82,
         type: "Pharmacokinetic",
-        pathway: "CYP3A4",
-        risk: "Clarithromycin can increase exposure to atorvastatin, potentially increasing adverse-effect risk.",
-        moa: "Clarithromycin inhibits CYP3A4-mediated metabolism, which can increase concentrations of susceptible statins.",
-        recommendation: "Verify the statin-antibiotic combination and consider an appropriate alternative strategy where clinically indicated."
+        pathway: "CYP3A-mediated exposure",
+        risk: "Clarithromycin can increase exposure to certain statins metabolized through CYP3A pathways.",
+        moa: "Macrolide-mediated enzyme/transporter inhibition may increase statin exposure and adverse-effect risk.",
+        recommendation: "Verify the specific statin, dose and alternative-antibiotic options with an authoritative reference."
     },
 
     {
@@ -435,34 +423,34 @@ const INTERACTIONS = [
         severity: "HIGH",
         score: 95,
         type: "Pharmacokinetic",
-        pathway: "CYP3A4",
-        risk: "Strong interaction potential may substantially increase simvastatin exposure and muscle toxicity concern.",
-        moa: "CYP3A4 inhibition reduces simvastatin metabolism and may increase systemic exposure.",
-        recommendation: "This combination should be specifically verified using current authoritative interaction guidance."
+        pathway: "CYP3A-mediated exposure",
+        risk: "A clinically important increase in simvastatin exposure may occur.",
+        moa: "Clarithromycin inhibits CYP3A-mediated metabolism and can substantially increase simvastatin exposure.",
+        recommendation: "Verify current product labeling and clinical guidance before concurrent use."
     },
 
     {
         a: "enalapril",
         b: "spironolactone",
         severity: "HIGH",
-        score: 84,
+        score: 78,
         type: "Pharmacodynamic",
-        pathway: "Renin-Angiotensin-Aldosterone System",
-        risk: "Combined potassium-retaining effects may increase hyperkalemia concern.",
-        moa: "Enalapril reduces angiotensin-II-mediated aldosterone activity while spironolactone antagonizes aldosterone.",
-        recommendation: "Renal function and potassium status should be considered in clinical assessment."
+        pathway: "Potassium balance",
+        risk: "Combined renin-angiotensin system and potassium-sparing effects may increase hyperkalemia risk.",
+        moa: "ACE inhibition reduces aldosterone activity while spironolactone antagonizes aldosterone-mediated potassium excretion.",
+        recommendation: "Verify potassium and renal-function monitoring requirements."
     },
 
     {
         a: "lisinopril",
         b: "spironolactone",
         severity: "HIGH",
-        score: 84,
+        score: 78,
         type: "Pharmacodynamic",
-        pathway: "RAAS / Potassium Balance",
-        risk: "Both medicines can contribute to increased serum potassium.",
-        moa: "ACE inhibition decreases aldosterone activity while spironolactone directly blocks aldosterone receptors.",
-        recommendation: "Review renal function and potassium monitoring requirements."
+        pathway: "Potassium balance",
+        risk: "Combined therapy can increase potassium elevation risk in susceptible patients.",
+        moa: "Both therapies reduce mechanisms responsible for potassium excretion.",
+        recommendation: "Verify renal function, potassium monitoring and indication with a clinician."
     },
 
     {
@@ -471,58 +459,46 @@ const INTERACTIONS = [
         severity: "HIGH",
         score: 86,
         type: "Pharmacokinetic",
-        pathway: "CYP Enzyme Inhibition",
-        risk: "Amiodarone can increase warfarin exposure and anticoagulant effect.",
-        moa: "Amiodarone inhibits several metabolic pathways involved in warfarin clearance.",
-        recommendation: "Verify anticoagulation monitoring requirements when therapy is combined."
+        pathway: "Anticoagulant exposure",
+        risk: "Amiodarone can increase warfarin effect and alter anticoagulation control.",
+        moa: "Amiodarone inhibits metabolic pathways involved in warfarin clearance.",
+        recommendation: "Verify anticoagulation monitoring and dose-management guidance."
     },
 
     {
         a: "warfarin",
         b: "metronidazole",
         severity: "HIGH",
-        score: 83,
+        score: 82,
         type: "Pharmacokinetic",
-        pathway: "Warfarin Metabolism",
-        risk: "Metronidazole may increase anticoagulant effect and bleeding concern.",
-        moa: "Metronidazole can inhibit metabolic pathways involved in clearance of certain warfarin components.",
-        recommendation: "Clinical monitoring and authoritative interaction guidance should be consulted."
+        pathway: "Anticoagulant exposure",
+        risk: "Metronidazole can increase anticoagulant effect in patients receiving warfarin.",
+        moa: "Metabolic inhibition can reduce clearance of warfarin and increase anticoagulant response.",
+        recommendation: "Verify monitoring requirements using current clinical guidance."
     },
 
     {
         a: "warfarin",
         b: "rifampicin",
         severity: "HIGH",
-        score: 81,
+        score: 84,
         type: "Pharmacokinetic",
-        pathway: "Enzyme Induction",
-        risk: "Rifampicin can substantially alter warfarin exposure and anticoagulant response.",
-        moa: "Rifampicin induces drug-metabolizing enzymes and transport pathways, increasing clearance of susceptible medicines.",
-        recommendation: "Anticoagulation response should be clinically reviewed when rifampicin is initiated or stopped."
-    },
-
-    {
-        a: "sildenafil",
-        b: "nitroglycerin",
-        severity: "HIGH",
-        score: 99,
-        type: "Pharmacodynamic",
-        pathway: "Nitric Oxide / cGMP",
-        risk: "PDE-5 inhibition combined with nitrate-mediated vasodilation can produce dangerous blood-pressure reduction.",
-        moa: "Both pathways increase cGMP-mediated vasodilation.",
-        recommendation: "This pair requires strict verification against authoritative prescribing guidance."
+        pathway: "Enzyme induction",
+        risk: "Rifampicin can reduce warfarin exposure and alter anticoagulation control.",
+        moa: "Potent enzyme induction can increase metabolism of warfarin.",
+        recommendation: "Verify anticoagulation monitoring and management during therapy changes."
     },
 
     {
         a: "ibuprofen",
         b: "enalapril",
         severity: "MODERATE",
-        score: 61,
+        score: 63,
         type: "Pharmacodynamic",
-        pathway: "Renal Hemodynamics",
-        risk: "NSAID exposure can reduce the blood-pressure and renal effects associated with ACE inhibitor therapy in susceptible patients.",
-        moa: "NSAID-mediated prostaglandin inhibition can affect renal blood flow and sodium handling.",
-        recommendation: "Consider patient renal status and verify the combination when clinically relevant."
+        pathway: "Renal / blood pressure",
+        risk: "NSAID use can reduce antihypertensive response and may contribute to renal stress in susceptible patients.",
+        moa: "Prostaglandin inhibition can affect renal perfusion and counter some antihypertensive effects.",
+        recommendation: "Verify renal risk and blood-pressure monitoring, especially with prolonged NSAID use."
     },
 
     {
@@ -531,22 +507,22 @@ const INTERACTIONS = [
         severity: "HIGH",
         score: 87,
         type: "Pharmacokinetic",
-        pathway: "Renal Lithium Clearance",
-        risk: "NSAIDs may reduce renal lithium clearance and increase lithium exposure.",
-        moa: "Reduced renal prostaglandin synthesis can alter renal blood flow and lithium handling.",
-        recommendation: "Verify monitoring requirements and assess patient-specific risk factors."
+        pathway: "Renal clearance",
+        risk: "NSAIDs can increase lithium exposure and toxicity risk.",
+        moa: "Reduced renal prostaglandin-mediated blood flow can decrease lithium clearance.",
+        recommendation: "Verify lithium monitoring and renal function before concurrent use."
     },
 
     {
         a: "digoxin",
         b: "verapamil",
         severity: "HIGH",
-        score: 82,
+        score: 83,
         type: "Pharmacokinetic / Pharmacodynamic",
-        pathway: "Cardiac Function / P-gp",
-        risk: "Verapamil can increase digoxin exposure and may add to effects on cardiac conduction.",
-        moa: "Verapamil can affect P-glycoprotein-mediated transport and AV-node conduction.",
-        recommendation: "Clinical monitoring and current interaction references should be used."
+        pathway: "Cardiac / drug exposure",
+        risk: "Verapamil may increase digoxin exposure and both can contribute to cardiac conduction effects.",
+        moa: "Transporter and conduction effects may increase digoxin-related toxicity risk.",
+        recommendation: "Verify monitoring requirements and patient-specific cardiac risk."
     },
 
     {
@@ -555,21 +531,21 @@ const INTERACTIONS = [
         severity: "HIGH",
         score: 91,
         type: "Pharmacodynamic",
-        pathway: "Serotonergic Signaling",
-        risk: "Combined serotonergic activity may increase concern for serotonin toxicity.",
-        moa: "Fluoxetine increases serotonergic signaling while linezolid has monoamine oxidase-inhibiting potential.",
-        recommendation: "The combination requires careful clinical verification and appropriate monitoring."
+        pathway: "Serotonergic toxicity",
+        risk: "Concurrent serotonergic activity may increase concern for serotonin toxicity.",
+        moa: "Linezolid has monoamine oxidase-inhibiting activity and fluoxetine increases serotonergic signaling.",
+        recommendation: "Verify current prescribing guidance and appropriate management of serotonergic therapy."
     },
 
     {
         a: "phenytoin",
         b: "rifampicin",
         severity: "MODERATE",
-        score: 68,
+        score: 67,
         type: "Pharmacokinetic",
-        pathway: "Hepatic Enzyme Induction",
-        risk: "Rifampicin may alter phenytoin metabolism and reduce or destabilize exposure.",
-        moa: "Enzyme induction can increase metabolic clearance of susceptible medicines.",
+        pathway: "Enzyme induction",
+        risk: "Rifampicin may reduce exposure to phenytoin and alter seizure control.",
+        moa: "Enzyme induction can increase metabolism of phenytoin.",
         recommendation: "Verify therapeutic monitoring and dose-management requirements."
     },
 
@@ -577,48 +553,48 @@ const INTERACTIONS = [
         a: "levothyroxine",
         b: "antacid",
         severity: "MODERATE",
-        score: 55,
+        score: 56,
         type: "Pharmacokinetic",
-        pathway: "GI Absorption",
-        risk: "Antacid components may interfere with gastrointestinal absorption of levothyroxine.",
-        moa: "Binding or altered gastrointestinal conditions can reduce levothyroxine absorption.",
-        recommendation: "Administration timing and product-specific guidance should be checked."
+        pathway: "Absorption",
+        risk: "Antacid components may reduce levothyroxine absorption when administration is too close.",
+        moa: "Gastrointestinal binding and altered absorption can reduce thyroid-hormone exposure.",
+        recommendation: "Verify administration spacing using the product-specific prescribing information."
     },
 
     {
         a: "insulin",
         b: "propranolol",
         severity: "MODERATE",
-        score: 62,
+        score: 61,
         type: "Pharmacodynamic",
-        pathway: "Glucose Regulation / Beta Blockade",
-        risk: "Beta blockade may alter recognition of some symptoms of hypoglycemia.",
-        moa: "Propranolol blocks beta-adrenergic signaling that contributes to several counter-regulatory responses.",
-        recommendation: "Review glucose monitoring and patient-specific clinical considerations."
+        pathway: "Glucose regulation",
+        risk: "Beta blockade may alter recognition of some hypoglycemia symptoms.",
+        moa: "Beta-adrenergic blockade can blunt certain adrenergic warning signs of hypoglycemia.",
+        recommendation: "Verify patient monitoring and counseling requirements."
     },
 
     {
         a: "methotrexate",
         b: "ibuprofen",
         severity: "HIGH",
-        score: 78,
-        type: "Pharmacokinetic",
-        pathway: "Renal Clearance",
-        risk: "NSAIDs may alter renal handling of methotrexate and increase toxicity concern in susceptible settings.",
-        moa: "Reduced renal clearance can increase systemic methotrexate exposure.",
-        recommendation: "Verify dose, indication, renal status and interaction guidance before concurrent use."
+        score: 80,
+        type: "Pharmacokinetic / Toxicity",
+        pathway: "Renal clearance",
+        risk: "NSAID co-administration can increase concern for methotrexate toxicity in certain patients.",
+        moa: "NSAIDs may affect renal elimination and exposure to methotrexate.",
+        recommendation: "Verify dose, indication, renal function and current interaction guidance."
     },
 
     {
         a: "ciprofloxacin",
         b: "theophylline",
         severity: "HIGH",
-        score: 79,
+        score: 81,
         type: "Pharmacokinetic",
-        pathway: "CYP1A2",
-        risk: "Ciprofloxacin can increase theophylline exposure in susceptible patients.",
-        moa: "Ciprofloxacin inhibits CYP1A2, an important pathway in theophylline metabolism.",
-        recommendation: "Check current interaction guidance and monitoring requirements."
+        pathway: "CYP1A2 inhibition",
+        risk: "Ciprofloxacin can increase theophylline exposure and adverse-effect risk.",
+        moa: "Ciprofloxacin inhibits CYP1A2-mediated metabolism of theophylline.",
+        recommendation: "Verify monitoring and alternative therapy considerations."
     },
 
     {
@@ -627,46 +603,66 @@ const INTERACTIONS = [
         severity: "HIGH",
         score: 94,
         type: "Pharmacokinetic",
-        pathway: "CYP3A4",
-        risk: "Ketoconazole can markedly inhibit metabolism of simvastatin and increase exposure.",
-        moa: "Strong CYP3A4 inhibition reduces simvastatin clearance.",
-        recommendation: "This combination should be independently verified using current authoritative guidance."
+        pathway: "CYP3A-mediated exposure",
+        risk: "Ketoconazole can markedly increase exposure to simvastatin.",
+        moa: "Strong CYP3A inhibition can reduce simvastatin metabolism.",
+        recommendation: "Verify current labeling and avoid inappropriate concurrent use."
     },
 
     {
         a: "amiodarone",
         b: "digoxin",
         severity: "HIGH",
-        score: 80,
-        type: "Pharmacokinetic",
-        pathway: "P-glycoprotein / Cardiac",
-        risk: "Amiodarone may increase digoxin exposure and can add to cardiac conduction effects.",
-        moa: "Amiodarone can reduce digoxin clearance and influence cardiac electrophysiology.",
-        recommendation: "Verify monitoring requirements and patient-specific risk factors."
+        score: 89,
+        type: "Pharmacokinetic / Pharmacodynamic",
+        pathway: "Cardiac / drug exposure",
+        risk: "Amiodarone can increase digoxin exposure and both agents can contribute to cardiac effects.",
+        moa: "Amiodarone can reduce digoxin clearance and has independent electrophysiologic effects.",
+        recommendation: "Verify monitoring and dose-management requirements."
     },
 
     {
         a: "fluconazole",
         b: "warfarin",
         severity: "HIGH",
-        score: 85,
+        score: 84,
         type: "Pharmacokinetic",
-        pathway: "CYP Enzyme Inhibition",
-        risk: "Fluconazole can increase warfarin exposure and anticoagulant response.",
-        moa: "Fluconazole inhibits hepatic metabolic pathways involved in warfarin clearance.",
-        recommendation: "Anticoagulation status should be clinically monitored when appropriate."
-    }
+        pathway: "Anticoagulant exposure",
+        risk: "Fluconazole can increase warfarin effect and alter anticoagulation control.",
+        moa: "CYP inhibition can reduce metabolism of warfarin.",
+        recommendation: "Verify INR monitoring and management using current clinical guidance."
+    },
 
-];
+    {
+        a: "diazepam",
+        b: "alcohol",
+        severity: "HIGH",
+        score: 90,
+        type: "Pharmacodynamic",
+        pathway: "CNS depression",
+        risk: "Combined central nervous system depressant effects can increase sedation and impairment.",
+        moa: "Both substances enhance CNS depressant effects through different mechanisms.",
+        recommendation: "Avoid assuming safety; verify the clinical context and appropriate counseling."
+    },
 
+    {
+        a: "aspirin",
+        b: "heparin",
+        severity: "HIGH",
+        score: 86,
+        type: "Pharmacodynamic",
+        pathway: "Bleeding risk",
+        risk: "Combined antiplatelet and anticoagulant effects can increase bleeding risk.",
+        moa: "Aspirin inhibits platelet function while heparin enhances antithrombin-mediated anticoagulation.",
+        recommendation: "Verify indication and bleeding monitoring requirements."
+    },
 
-/* =========================================================
-   3. DOM REFERENCES
-========================================================= */
-
-const $ = (id) => document.getElementById(id);
-
-const search1 = $("search1");
-const search2 = $("search2");
-
-const drug1 = $("dru
+    {
+        a: "carbamazepine",
+        b: "warfarin",
+        severity: "MODERATE",
+        score: 65,
+        type: "Pharmacokinetic",
+        pathway: "Enzyme induction",
+        risk: "Carbamazepine can alter warfarin metabolism and anticoagulation control.",
+        moa: "Enzyme induction can increase m
