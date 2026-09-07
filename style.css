@@ -1025,18 +1025,4 @@ footer {
   .btn-pdf {
     display: none;
   }
-  .text-block, .recommendation, .score, .structures-box, .evidence-box {
-    background: #f8fafc !important;
-    border: 1px solid #e2e8f0 !important;
-    color: #000000 !important;
-  }
-  .report-top h3, .score strong, .text-block p, .recommendation p {
-    color: #000000 !important;
-  }
-}
-
-@media (max-width: 900px) {
-  .hero, .analyzer, .about, .report-details, .patient-grid {
-    grid-template-columns: 1fr;
-  }
-}
+  .text-block, .recommen
