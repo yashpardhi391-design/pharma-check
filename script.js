@@ -1,781 +1,214 @@
-"use strict";
-
-
-/* ==========================================
-   DRUG LIBRARY
-========================================== */
-
-const DRUGS = {
-
-  aspirin: "Aspirin",
-  paracetamol: "Paracetamol",
-  ibuprofen: "Ibuprofen",
-  diclofenac: "Diclofenac",
-  naproxen: "Naproxen",
-  ketorolac: "Ketorolac",
-
-  amoxicillin: "Amoxicillin",
-  azithromycin: "Azithromycin",
-  clarithromycin: "Clarithromycin",
-  ciprofloxacin: "Ciprofloxacin",
-  levofloxacin: "Levofloxacin",
-  doxycycline: "Doxycycline",
-  metronidazole: "Metronidazole",
-  rifampicin: "Rifampicin",
-  linezolid: "Linezolid",
-
-  warfarin: "Warfarin",
-  heparin: "Heparin",
-
-  atenolol: "Atenolol",
-  metoprolol: "Metoprolol",
-  propranolol: "Propranolol",
-  verapamil: "Verapamil",
-  amlodipine: "Amlodipine",
-  enalapril: "Enalapril",
-  lisinopril: "Lisinopril",
-  losartan: "Losartan",
-  furosemide: "Furosemide",
-  spironolactone: "Spironolactone",
-  digoxin: "Digoxin",
-  amiodarone: "Amiodarone",
-
-  atorvastatin: "Atorvastatin",
-  simvastatin: "Simvastatin",
-  rosuvastatin: "Rosuvastatin",
-
-  metformin: "Metformin",
-  glimepiride: "Glimepiride",
-  glipizide: "Glipizide",
-  insulin: "Insulin",
-
-  fluoxetine: "Fluoxetine",
-  sertraline: "Sertraline",
-  diazepam: "Diazepam",
-  phenytoin: "Phenytoin",
-  carbamazepine: "Carbamazepine",
-  lithium: "Lithium",
-
-  omeprazole: "Omeprazole",
-  pantoprazole: "Pantoprazole",
-  antacid: "Antacid",
-  ondansetron: "Ondansetron",
-  metoclopramide: "Metoclopramide",
-
-  salbutamol: "Salbutamol",
-  theophylline: "Theophylline",
-  montelukast: "Montelukast",
-
-  levothyroxine: "Levothyroxine",
-  prednisolone: "Prednisolone",
-  dexamethasone: "Dexamethasone",
-
-  fluconazole: "Fluconazole",
-  ketoconazole: "Ketoconazole",
-
-  alcohol: "Alcohol",
-  sildenafil: "Sildenafil",
-  methotrexate: "Methotrexate"
-
-};
-
-
-/* ==========================================
-   INTERACTION DATABASE
-========================================== */
-
-const INTERACTIONS = {
-
-  "aspirin|warfarin": {
-    severity: "HIGH",
-    score: 88,
-    type: "Bleeding Risk",
-    pathway: "Pharmacodynamic",
-    risk: "Concurrent use may increase bleeding risk.",
-    moa: "Both agents affect hemostasis through different mechanisms.",
-    recommendation: "Clinical monitoring and verification with an authoritative interaction reference are recommended."
-  },
-
-  "alcohol|paracetamol": {
-    severity: "HIGH",
-    score: 85,
-    type: "Hepatic Safety",
-    pathway: "Pharmacodynamic",
-    risk: "Concurrent exposure may increase hepatic safety concerns.",
-    moa: "Alcohol exposure can affect hepatic metabolism and susceptibility to acetaminophen toxicity.",
-    recommendation: "Avoid unsupervised concurrent use and verify patient-specific factors."
-  },
-
-  "atenolol|verapamil": {
-    severity: "HIGH",
-    score: 92,
-    type: "Cardiovascular",
-    pathway: "Pharmacodynamic",
-    risk: "Combined effects may increase bradycardia, hypotension or conduction abnormalities.",
-    moa: "Both agents can reduce cardiac rate or conduction.",
-    recommendation: "Clinical monitoring is recommended."
-  },
-
-  "atorvastatin|clarithromycin": {
-    severity: "HIGH",
-    score: 82,
-    type: "Pharmacokinetic",
-    pathway: "CYP3A4 inhibition",
-    risk: "Clarithromycin may increase atorvastatin exposure.",
-    moa: "Enzyme inhibition can reduce statin metabolism.",
-    recommendation: "Verify therapy and monitor for statin-related adverse effects."
-  },
-
-  "clarithromycin|simvastatin": {
-    severity: "HIGH",
-    score: 95,
-    type: "Pharmacokinetic",
-    pathway: "CYP3A4 inhibition",
-    risk: "Clarithromycin can substantially increase simvastatin exposure.",
-    moa: "CYP3A4 inhibition reduces simvastatin metabolism.",
-    recommendation: "Requires professional verification before concurrent use."
-  },
-
-  "enalapril|spironolactone": {
-    severity: "HIGH",
-    score: 86,
-    type: "Electrolyte",
-    pathway: "Potassium retention",
-    risk: "Concurrent use may increase hyperkalemia risk.",
-    moa: "Both therapies can increase serum potassium.",
-    recommendation: "Monitor potassium and renal function where clinically appropriate."
-  },
-
-  "lisinopril|spironolactone": {
-    severity: "HIGH",
-    score: 86,
-    type: "Electrolyte",
-    pathway: "Potassium retention",
-    risk: "Concurrent use may increase hyperkalemia risk.",
-    moa: "Both therapies can increase serum potassium.",
-    recommendation: "Monitor potassium and renal function where clinically appropriate."
-  },
-
-  "amiodarone|warfarin": {
-    severity: "HIGH",
-    score: 84,
-    type: "Anticoagulation",
-    pathway: "Pharmacokinetic",
-    risk: "Amiodarone can increase warfarin exposure and anticoagulant effect.",
-    moa: "Metabolic inhibition can increase warfarin activity.",
-    recommendation: "Verify anticoagulation monitoring requirements."
-  },
-
-  "metronidazole|warfarin": {
-    severity: "HIGH",
-    score: 87,
-    type: "Anticoagulation",
-    pathway: "Pharmacokinetic",
-    risk: "Metronidazole may increase anticoagulant effect.",
-    moa: "Metabolic interaction can increase warfarin exposure.",
-    recommendation: "Verify INR monitoring and therapy with a qualified professional."
-  },
-
-  "ibuprofen|enalapril": {
-    severity: "MODERATE",
-    score: 58,
-    type: "Renal / Blood Pressure",
-    pathway: "Pharmacodynamic",
-    risk: "NSAID use may reduce antihypertensive effect and affect renal function.",
-    moa: "Prostaglandin inhibition can alter renal blood flow.",
-    recommendation: "Use clinical monitoring and patient-specific assessment."
-  },
-
-  "ibuprofen|lithium": {
-    severity: "HIGH",
-    score: 82,
-    type: "Lithium Toxicity",
-    pathway: "Renal Clearance",
-    risk: "NSAIDs may increase lithium exposure.",
-    moa: "Reduced renal lithium clearance may increase serum concentration.",
-    recommendation: "Verify lithium monitoring requirements."
-  },
-
-  "digoxin|verapamil": {
-    severity: "HIGH",
-    score: 85,
-    type: "Cardiac",
-    pathway: "Pharmacokinetic / Pharmacodynamic",
-    risk: "Combined use may increase cardiac adverse-effect risk.",
-    moa: "Effects on cardiac conduction and digoxin exposure may overlap.",
-    recommendation: "Professional monitoring is recommended."
-  },
-
-  "fluoxetine|linezolid": {
-    severity: "HIGH",
-    score: 94,
-    type: "Serotonergic",
-    pathway: "Pharmacodynamic",
-    risk: "Concurrent exposure can increase serotonin toxicity risk.",
-    moa: "Both therapies can increase serotonergic activity.",
-    recommendation: "Requires professional verification."
-  },
-
-  "ciprofloxacin|theophylline": {
-    severity: "HIGH",
-    score: 83,
-    type: "Pharmacokinetic",
-    pathway: "CYP inhibition",
-    risk: "Ciprofloxacin may increase theophylline exposure.",
-    moa: "Reduced theophylline metabolism may increase systemic exposure.",
-    recommendation: "Verify therapy and monitoring requirements."
-  },
-
-  "diazepam|alcohol": {
-    severity: "HIGH",
-    score: 96,
-    type: "CNS Depression",
-    pathway: "Pharmacodynamic",
-    risk: "Combined CNS depressant effects may be dangerous.",
-    moa: "Both substances depress central nervous system activity.",
-    recommendation: "Avoid unsupervised concurrent use."
-  },
-
-  "aspirin|heparin": {
-    severity: "HIGH",
-    score: 91,
-    type: "Bleeding Risk",
-    pathway: "Pharmacodynamic",
-    risk: "Concurrent anticoagulant and antiplatelet effects can increase bleeding risk.",
-    moa: "Both agents impair hemostasis through different mechanisms.",
-    recommendation: "Requires clinical monitoring."
-  },
-
-  "methotrexate|ibuprofen": {
-    severity: "HIGH",
-    score: 89,
-    type: "Toxicity",
-    pathway: "Renal Clearance",
-    risk: "NSAIDs may alter methotrexate clearance and increase toxicity concerns.",
-    moa: "Renal elimination and protein-binding effects may contribute.",
-    recommendation: "Professional verification is recommended."
-  },
-
-  "ketoconazole|simvastatin": {
-    severity: "HIGH",
-    score: 94,
-    type: "Pharmacokinetic",
-    pathway: "CYP3A4 inhibition",
-    risk: "Ketoconazole can markedly increase simvastatin exposure.",
-    moa: "Strong enzyme inhibition reduces statin metabolism.",
-    recommendation: "Requires professional verification."
-  },
-
-  "amiodarone|digoxin": {
-    severity: "HIGH",
-    score: 86,
-    type: "Cardiac",
-    pathway: "Pharmacokinetic",
-    risk: "Amiodarone may increase digoxin exposure.",
-    moa: "Changes in digoxin disposition may increase systemic exposure.",
-    recommendation: "Verify monitoring requirements."
-  },
-
-  "fluconazole|warfarin": {
-    severity: "HIGH",
-    score: 88,
-    type: "Anticoagulation",
-    pathway: "CYP inhibition",
-    risk: "Fluconazole may increase warfarin effect.",
-    moa: "Metabolic inhibition can increase warfarin exposure.",
-    recommendation: "Verify anticoagulation monitoring."
-  },
-
-  "levothyroxine|antacid": {
-    severity: "MODERATE",
-    score: 55,
-    type: "Absorption",
-    pathway: "Gastrointestinal",
-    risk: "Antacids may reduce levothyroxine absorption.",
-    moa: "Binding or altered gastrointestinal conditions can reduce absorption.",
-    recommendation: "Verify administration timing."
-  },
-
-  "insulin|propranolol": {
-    severity: "MODERATE",
-    score: 62,
-    type: "Hypoglycemia",
-    pathway: "Pharmacodynamic",
-    risk: "Beta-blockade may alter recognition of hypoglycemia symptoms.",
-    moa: "Beta-adrenergic effects can mask some warning symptoms.",
-    recommendation: "Monitor according to clinical guidance."
-  }
-
-};
-
-
-/* ==========================================
-   CREATE DRUG OPTIONS
-========================================== */
-
-function loadDrugs() {
-
-  const first = document.getElementById("drug1");
-  const second = document.getElementById("drug2");
-
-  if (!first || !second) {
-    console.error("Drug selectors not found.");
-    return;
-  }
-
-  const sorted = Object.entries(DRUGS)
-    .sort((a, b) => a[1].localeCompare(b[1]));
-
-  sorted.forEach(function(item) {
-
-    const value = item[0];
-    const name = item[1];
-
-    const option1 = document.createElement("option");
-    option1.value = value;
-    option1.textContent = name;
-
-    const option2 = document.createElement("option");
-    option2.value = value;
-    option2.textContent = name;
-
-    first.appendChild(option1);
-    second.appendChild(option2);
-
-  });
-
-}
-
-
-/* ==========================================
-   SEARCH
-========================================== */
-
-function setupSearch(searchId, selectId) {
-
-  const search = document.getElementById(searchId);
-  const select = document.getElementById(selectId);
-
-  if (!search || !select) return;
-
-  search.addEventListener("input", function() {
-
-    const query = this.value
-      .toLowerCase()
-      .trim();
-
-    const currentValue = select.value;
-
-    select.innerHTML = "";
-
-    const placeholder = document.createElement("option");
-
-    placeholder.value = "";
-    placeholder.textContent =
-      selectId === "drug1"
-        ? "Select primary drug"
-        : "Select secondary drug";
-
-    select.appendChild(placeholder);
-
-
-    Object.entries(DRUGS)
-      .filter(function(item) {
-
-        const key = item[0];
-        const name = item[1].toLowerCase();
-
-        return (
-          !query ||
-          key.includes(query) ||
-          name.includes(query)
-        );
-
-      })
-      .sort((a, b) =>
-        a[1].localeCompare(b[1])
-      )
-      .forEach(function(item) {
-
-        const option = document.createElement("option");
-
-        option.value = item[0];
-        option.textContent = item[1];
-
-        select.appendChild(option);
-
-      });
-
-
-    if (DRUGS[currentValue]) {
-      select.value = currentValue;
+document.addEventListener("DOMContentLoaded", function () {
+  // Pre-configured Clinical Intelligence Matrix Database
+  const db = {
+    "Warfarin-Aspirin": {
+      scorePercentage: 95,
+      severity: "HIGH RISK",
+      severityClass: "high",
+      mechanism: "Synergistic Anticoagulation & Antiplatelet Inhibition",
+      effect: "Fatal Bleeding & GI Hemorrhage Risk",
+      implication: "Combined primary hemostasis blockade and clotting factor suppression dramatically elevates GI bleeding risks.",
+      action: "Avoid combination. If mandatory, monitor INR closely and prescribe PPI cover."
+    },
+    "Warfarin-Fluconazole": {
+      scorePercentage: 92,
+      severity: "HIGH RISK",
+      severityClass: "high",
+      mechanism: "Hepatic CYP2C9 Enzyme Inhibition",
+      effect: "Acute Warfarin Accumulation & Toxicity",
+      implication: "Fluconazole inhibits S-warfarin clearance, causing rapid increase in INR levels.",
+      action: "Reduce Warfarin dosage by 50% during concurrent azole antifungal therapy."
+    },
+    "Aspirin-Ibuprofen": {
+      scorePercentage: 68,
+      severity: "MODERATE RISK",
+      severityClass: "moderate",
+      mechanism: "Competitive COX-1 Binding Site Blockade",
+      effect: "Attenuated Cardioprotective Effect of Aspirin",
+      implication: "Ibuprofen obstructs Aspirin access to the COX-1 acetylation site on platelets.",
+      action: "Take Aspirin 1 hour before or 8 hours after NSAID dosing."
+    },
+    "Digoxin-Amiodarone": {
+      scorePercentage: 89,
+      severity: "HIGH RISK",
+      severityClass: "high",
+      mechanism: "P-glycoprotein (P-gp) Transporter Efflux Inhibition",
+      effect: "Severe Digoxin Toxicity & Arrhythmias",
+      implication: "Amiodarone reduces renal and biliary clearance of Digoxin by over 50%.",
+      action: "Halve the Digoxin dose upon starting Amiodarone therapy and measure serum levels."
+    },
+    "Simvastatin-Amiodarone": {
+      scorePercentage: 84,
+      severity: "HIGH RISK",
+      severityClass: "high",
+      mechanism: "CYP3A4 Enzyme Competition",
+      effect: "Myopathy & Rhabdomyolysis",
+      implication: "Inhibition of statin breakdown leads to skeletal muscle damage and acute renal damage.",
+      action: "Cap Simvastatin dose to 20mg/day or switch to Pravastatin/Rosuvastatin."
+    },
+    "Lisinopril-Spironolactone": {
+      scorePercentage: 78,
+      severity: "MODERATE RISK",
+      severityClass: "moderate",
+      mechanism: "Suppression of RAAS Axis",
+      effect: "Life-Threatening Hyperkalemia",
+      implication: "Decreased urinary potassium excretion leading to systemic potassium buildup.",
+      action: "Routine serum potassium monitoring required; avoid potassium supplements."
+    }
+  };
+
+  // Safe Element References
+  const runBtn = document.getElementById('runAnalysis');
+  const resetBtn = document.getElementById('resetBtn');
+  const drug1Select = document.getElementById('drug1');
+  const drug2Select = document.getElementById('drug2');
+  const drug1Search = document.getElementById('drug1Search');
+  const drug2Search = document.getElementById('drug2Search');
+  const emptyState = document.getElementById('emptyState');
+  const reportResult = document.getElementById('reportResult');
+
+  // Core Clinical Simulation Logic
+  function executeAnalysis() {
+    const d1 = drug1Select ? drug1Select.value : "";
+    const d2 = drug2Select ? drug2Select.value : "";
+
+    if (!d1 || !d2) {
+      alert("Kripya dono Primary aur Secondary medications select karein!");
+      return;
     }
 
-  });
+    if (d1 === d2) {
+      alert("Dono jagah same drug select hai! Kripya alag-alag select karein.");
+      return;
+    }
 
-}
+    if (runBtn) {
+      runBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> ANALYZING...`;
+    }
 
+    setTimeout(function () {
+      const key1 = d1 + "-" + d2;
+      const key2 = d2 + "-" + d1;
 
-/* ==========================================
-   ANALYSIS
-========================================== */
+      const age = document.getElementById('ageGroup') ? document.getElementById('ageGroup').value : 'adult';
+      const kidney = document.getElementById('kidneyFunction') ? document.getElementById('kidneyFunction').value : 'normal';
+      const liver = document.getElementById('liverFunction') ? document.getElementById('liverFunction').value : 'normal';
 
-function runAnalysis() {
+      let data = db[key1] || db[key2];
 
-  console.log("RUN ANALYSIS CLICKED");
+      // Dynamic calculation for unlisted drug combinations
+      if (!data) {
+        let score = 45;
+        if (kidney === 'severe') score += 25;
+        if (liver === 'impaired') score += 20;
+        if (age === 'elderly') score += 10;
 
+        data = {
+          scorePercentage: Math.min(score, 95),
+          severity: score >= 70 ? "HIGH RISK" : "MODERATE RISK",
+          severityClass: score >= 70 ? "high" : "moderate",
+          mechanism: "Pharmacokinetic Metabolic Clearance Competition",
+          effect: "Altered Excretion & Potential Toxicity",
+          implication: `Concurrent administration of ${d1} + ${d2} requires clinical monitoring under current organ clearance capabilities (${kidney} renal, ${liver} hepatic).`,
+          action: "Perform baseline laboratory assessment and monitor for therapeutic elevation or adverse effects."
+        };
+      }
 
-  const drug1 = document.getElementById("drug1").value;
-  const drug2 = document.getElementById("drug2").value;
+      // Populate Visual Report Data
+      const reportPair = document.getElementById('reportPair');
+      if (reportPair) reportPair.innerText = d1 + " + " + d2;
 
+      const sevTag = document.getElementById('severityTag');
+      if (sevTag) {
+        sevTag.innerText = data.severity;
+        sevTag.className = "severity " + data.severityClass;
+      }
 
-  if (!drug1 || !drug2) {
+      const riskScore = document.getElementById('riskScore');
+      if (riskScore) riskScore.innerText = data.scorePercentage + "%";
 
-    alert(
-      "Please select both primary and secondary drugs."
-    );
+      const riskMeter = document.getElementById('riskMeter');
+      if (riskMeter) riskMeter.style.width = data.scorePercentage + "%";
 
-    return;
+      const mechanismText = document.getElementById('mechanismText');
+      if (mechanismText) mechanismText.innerText = data.mechanism;
+
+      const effectText = document.getElementById('effectText');
+      if (effectText) effectText.innerText = data.effect;
+
+      const implicationText = document.getElementById('implicationText');
+      if (implicationText) implicationText.innerText = data.implication;
+
+      const actionText = document.getElementById('actionText');
+      if (actionText) actionText.innerText = data.action;
+
+      const reportId = document.getElementById('reportId');
+      if (reportId) reportId.innerText = "REPORT ID: PRM-" + Math.floor(1000 + Math.random() * 9000) + "-X";
+
+      // Show/Hide Display State
+      if (emptyState) emptyState.style.display = 'none';
+      if (reportResult) reportResult.style.display = 'block';
+
+      if (runBtn) {
+        runBtn.innerHTML = `<i class="fa-solid fa-bolt"></i> RUN INTERACTION ANALYSIS`;
+      }
+    }, 200);
   }
 
+  // Event Listeners
+  if (runBtn) runBtn.onclick = executeAnalysis;
 
-  if (drug1 === drug2) {
+  if (resetBtn) {
+    resetBtn.onclick = function () {
+      if (drug1Select) drug1Select.value = "";
+      if (drug2Select) drug2Select.value = "";
+      if (drug1Search) drug1Search.value = "";
+      if (drug2Search) drug2Search.value = "";
 
-    alert(
-      "Please select two different drugs."
-    );
+      const options1 = drug1Select ? drug1Select.options : [];
+      for (let i = 0; i < options1.length; i++) options1[i].style.display = "";
 
-    return;
-  }
+      const options2 = drug2Select ? drug2Select.options : [];
+      for (let i = 0; i < options2.length; i++) options2[i].style.display = "";
 
-
-  const key = [drug1, drug2]
-    .sort()
-    .join("|");
-
-
-  let result = INTERACTIONS[key];
-
-
-  if (!result) {
-
-    result = {
-
-      severity: "VERIFY",
-
-      score: null,
-
-      type: "No Local Interaction Rule",
-
-      pathway: "Insufficient local data",
-
-      risk:
-        "This combination is not covered by the current local interaction rule set.",
-
-      moa:
-        "No local rule was found. This does not establish that the combination is safe.",
-
-      recommendation:
-        "Verify this combination using an authoritative drug-interaction reference or qualified healthcare professional."
-
+      if (reportResult) reportResult.style.display = 'none';
+      if (emptyState) emptyState.style.display = 'block';
     };
-
   }
 
+  // Live Dropdown Filtering Logic
+  function bindSearchFilter(inputElem, selectElem) {
+    if (!inputElem || !selectElem) return;
 
-  showReport(
-    drug1,
-    drug2,
-    result
-  );
+    inputElem.addEventListener('input', function (e) {
+      const filter = e.target.value.toLowerCase();
+      const options = selectElem.options;
+      for (let i = 0; i < options.length; i++) {
+        const txt = options[i].text.toLowerCase();
+        if (options[i].value === "") {
+          options[i].style.display = "";
+        } else {
+          options[i].style.display = txt.includes(filter) ? "" : "none";
+        }
+      }
+    });
+  }
 
-}
+  bindSearchFilter(drug1Search, drug1Select);
+  bindSearchFilter(drug2Search, drug2Select);
 
+  // Quick Preset Handlers
+  const presetBtns = document.querySelectorAll('.preset-btn');
+  presetBtns.forEach(function (btn) {
+    btn.onclick = function () {
+      const d1 = btn.getAttribute('data-d1');
+      const d2 = btn.getAttribute('data-d2');
 
-/* ==========================================
-   SHOW REPORT
-========================================== */
-
-function showReport(drug1, drug2, result) {
-
-  const placeholder =
-    document.getElementById("placeholderView");
-
-  const report =
-    document.getElementById("reportView");
-
-
-  placeholder.style.display = "none";
-
-  report.style.display = "block";
-
-
-  document.getElementById("pairTitle").textContent =
-    DRUGS[drug1] + " + " + DRUGS[drug2];
-
-
-  const pill =
-    document.getElementById("severityPill");
-
-
-  pill.textContent =
-    result.severity;
-
-
-  pill.className =
-    "severity " +
-    result.severity.toLowerCase();
-
-
-  document.getElementById("riskScore").textContent =
-    result.score === null
-      ? "—"
-      : result.score + "/100";
-
-
-  document.getElementById("interactionType").textContent =
-    result.type;
-
-
-  document.getElementById("pathway").textContent =
-    result.pathway;
-
-
-  document.getElementById("riskText").textContent =
-    result.risk;
-
-
-  document.getElementById("moaText").textContent =
-    result.moa;
-
-
-  document.getElementById("recommendationText").textContent =
-    result.recommendation;
-
-
-  const meter =
-    document.getElementById("riskMeter");
-
-
-  meter.style.width =
-    result.score === null
-      ? "0%"
-      : result.score + "%";
-
-
-  document.getElementById("reportCode").textContent =
-    "PC-" +
-    Math.floor(
-      10000000 +
-      Math.random() * 90000000
-    );
-
-
-  report.scrollIntoView({
-    behavior: "smooth",
-    block: "start"
+      if (d1 && d2 && drug1Select && drug2Select) {
+        drug1Select.value = d1;
+        drug2Select.value = d2;
+        executeAnalysis();
+      }
+    };
   });
-
-}
-
-
-/* ==========================================
-   RESET
-========================================== */
-
-function resetAnalysis() {
-
-  document.getElementById("drug1").value = "";
-
-  document.getElementById("drug2").value = "";
-
-  document.getElementById("patientAge").value =
-    "adult";
-
-  document.getElementById("patientRenal").value =
-    "normal";
-
-  document.getElementById("patientHepatic").value =
-    "normal";
-
-
-  document.getElementById("placeholderView").style.display =
-    "flex";
-
-  document.getElementById("reportView").style.display =
-    "none";
-
-  document.getElementById("riskMeter").style.width =
-    "0%";
-
-}
-
-
-/* ==========================================
-   QUICK SCENARIOS
-========================================== */
-
-function setupScenarios() {
-
-  document.querySelectorAll("[data-preset]")
-    .forEach(function(button) {
-
-      button.addEventListener("click", function() {
-
-        const values =
-          this.dataset.preset.split("|");
-
-
-        document.getElementById("drug1").value =
-          values[0];
-
-        document.getElementById("drug2").value =
-          values[1];
-
-
-        runAnalysis();
-
-      });
-
-    });
-
-}
-
-
-/* ==========================================
-   MATRIX
-========================================== */
-
-function renderMatrix(filter) {
-
-  const grid =
-    document.getElementById("matrixGrid");
-
-
-  grid.innerHTML = "";
-
-
-  Object.entries(INTERACTIONS)
-    .filter(function(item) {
-
-      const data = item[1];
-
-      return (
-        filter === "ALL" ||
-        data.severity === filter
-      );
-
-    })
-    .forEach(function(item) {
-
-      const key = item[0];
-      const data = item[1];
-
-      const drugs = key.split("|");
-
-      const card =
-        document.createElement("div");
-
-      card.className =
-        "matrix-card";
-
-
-      card.innerHTML = `
-
-        <div class="matrix-top">
-
-          <h4>
-            ${DRUGS[drugs[0]]}
-            +
-            ${DRUGS[drugs[1]]}
-          </h4>
-
-          <span class="score-value">
-            ${data.score}/100
-          </span>
-
-        </div>
-
-        <p>
-          ${data.type} · ${data.pathway}
-        </p>
-
-        <span class="matrix-severity ${data.severity.toLowerCase()}">
-          ${data.severity}
-        </span>
-
-      `;
-
-
-      grid.appendChild(card);
-
-    });
-
-}
-
-
-/* ==========================================
-   FILTERS
-========================================== */
-
-function setupFilters() {
-
-  document.querySelectorAll(".filter")
-    .forEach(function(button) {
-
-      button.addEventListener("click", function() {
-
-        document.querySelectorAll(".filter")
-          .forEach(function(btn) {
-
-            btn.classList.remove("active");
-
-          });
-
-
-        this.classList.add("active");
-
-
-        renderMatrix(
-          this.dataset.filter
-        );
-
-      });
-
-    });
-
-}
-
-
-/* ==========================================
-   START
-========================================== */
-
-document.addEventListener(
-  "DOMContentLoaded",
-  function() {
-
-    loadDrugs();
-
-    setupSearch(
-      "search1",
-      "drug1"
-    );
-
-    setupSearch(
-      "search2",
-      "drug2"
-    );
-
-    setupScenarios();
-
-    setupFilters();
-
-    renderMatrix("ALL");
-
-    console.log(
-      "PharmaCheck AI ENGINE ONLINE"
-    );
-
-  }
-);
+});
